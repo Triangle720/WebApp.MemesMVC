@@ -1,0 +1,66 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpContextAccessor
+
+@model IEnumerable<WebApp.MemesMVC.Models.UserModel>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>User list</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nickname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountCreationTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nickname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountCreationTime)
+                </td>
+                <td>
+                    @if (httpContextAccessor.HttpContext.Session.GetString("ROLE") == Enum.GetName(typeof(RoleTypes), RoleTypes.ADMIN))
+                    {
+                        <a asp-action="RoleChange" asp-route-id="@item.Id">Change role |</a>
+                    }
+                    <a asp-action="Delete" asp-route-id="@item.Id">Ban</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if((int)ViewBag.PageIndex > 1)
+{
+<div class="form-group btn btn-primary">
+    <a class="nav-link text-dark" asp-area="" asp-route-roleType="@ViewBag.Role" asp-route-pageIndex="@(ViewBag.PageIndex - 1)"
+       asp-controller="Management" asp-action="UsersManager"> Prev </a>
+</div>
+}
+
+@if(Model.Count() == 10)
+{
+<div class="form-group btn btn-primary">
+    <a class="nav-link text-dark" asp-area="" asp-route-roleType="@ViewBag.Role" asp-route-pageIndex="@(ViewBag.PageIndex + 1)"
+       asp-controller="Management" asp-action="UsersManager"> Next </a>
+</div>
+}

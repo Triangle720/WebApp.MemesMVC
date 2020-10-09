@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.MemesMVC.Data;
 
 namespace WebApp.MemesMVC.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20201009103133_RoleModelDeleted")]
+    partial class RoleModelDeleted
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,12 +27,6 @@ namespace WebApp.MemesMVC.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("IsAccepted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("LocalPath")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UploadTime")
                         .HasColumnType("datetime2");
@@ -61,7 +57,7 @@ namespace WebApp.MemesMVC.Migrations
                     b.Property<DateTime>("AccountCreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("BanExpireIn")
+                    b.Property<DateTime>("BanExpireIn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")

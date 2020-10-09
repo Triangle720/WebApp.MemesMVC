@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApp.MemesMVC.Models;
+using WebApp.MemesMVC.Security;
 
 namespace WebApp.MemesMVC.Controllers
 {
@@ -17,6 +18,12 @@ namespace WebApp.MemesMVC.Controllers
 
         [AllowAnonymous]
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        [RoleRequirement("ADMIN,MODERATOR")]
+        public IActionResult Management()
         {
             return View();
         }

@@ -24,7 +24,7 @@
                         @if (httpContextAccessor.HttpContext.Session.GetString("TOKEN") != null)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark"> Welcome @httpContextAccessor.HttpContext.Session.GetString("LOGIN")!</a>
+                                <a class="nav-link text-dark"> Welcome @httpContextAccessor.HttpContext.Session.GetString("NICKNAME")!</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Random</a>
@@ -32,15 +32,15 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Add your meme!</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Profile</a>
-                            </li>
                             @if (httpContextAccessor.HttpContext.Session.GetString("ROLE") != Enum.GetName(typeof(RoleTypes), RoleTypes.USER))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Management</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Management" asp-action="Index">Management</a>
                                 </li>
                             }
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Profile</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
                             </li>

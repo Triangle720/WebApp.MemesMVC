@@ -14,11 +14,12 @@ namespace WebApp.MemesMVC
 {
     public class Startup
     {
-        private const string SECRET = "agahkasdadluh!@asionm,cjvha!&^#a(wuhddj@nm,!#kjvlkl'l;la'v14125nljash";
+        private readonly string _secret;
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            _secret = configuration.GetSection("JWT").GetSection("secret").Value;
         }
 
         public IConfiguration Configuration { get; }
@@ -30,11 +31,12 @@ namespace WebApp.MemesMVC
             {
                 options.UseLazyLoadingProxies().UseSqlServer(Configuration["ConnectionString:Memes"]);
             });
+
             services.AddSession();
             services.AddDistributedMemoryCache();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            SymmetricSecurityKey symmetricKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SECRET));
+            SymmetricSecurityKey symmetricKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secret));
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(opt =>
@@ -48,6 +50,8 @@ namespace WebApp.MemesMVC
                         IssuerSigningKey = symmetricKey
                     };
                 });
+
+            services.AddAuthorization();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -61,9 +65,9 @@ namespace WebApp.MemesMVC
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseAuthentication();

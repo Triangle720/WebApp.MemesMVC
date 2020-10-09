@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.MemesMVC.Data;
 
 namespace WebApp.MemesMVC.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20201009040903_NicknameAdded")]
+    partial class NicknameAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,12 +27,6 @@ namespace WebApp.MemesMVC.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("IsAccepted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("LocalPath")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UploadTime")
                         .HasColumnType("datetime2");
@@ -51,6 +47,38 @@ namespace WebApp.MemesMVC.Migrations
                     b.ToTable("Pictures");
                 });
 
+            modelBuilder.Entity("WebApp.MemesMVC.Models.RoleModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("RoleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            RoleName = "USER"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            RoleName = "MODERATOR"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            RoleName = "ADMIN"
+                        });
+                });
+
             modelBuilder.Entity("WebApp.MemesMVC.Models.UserModel", b =>
                 {
                     b.Property<int>("Id")
@@ -61,16 +89,10 @@ namespace WebApp.MemesMVC.Migrations
                     b.Property<DateTime>("AccountCreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("BanExpireIn")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
-
-                    b.Property<bool>("IsBanned")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Login")
                         .IsRequired()
@@ -87,7 +109,7 @@ namespace WebApp.MemesMVC.Migrations
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
-                    b.Property<int>("Role")
+                    b.Property<int?>("RoleId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -98,6 +120,8 @@ namespace WebApp.MemesMVC.Migrations
                     b.HasIndex("Login")
                         .IsUnique();
 
+                    b.HasIndex("RoleId");
+
                     b.ToTable("Users");
                 });
 
@@ -106,6 +130,13 @@ namespace WebApp.MemesMVC.Migrations
                     b.HasOne("WebApp.MemesMVC.Models.UserModel", null)
                         .WithMany("Pictures")
                         .HasForeignKey("UserModelId");
+                });
+
+            modelBuilder.Entity("WebApp.MemesMVC.Models.UserModel", b =>
+                {
+                    b.HasOne("WebApp.MemesMVC.Models.RoleModel", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId");
                 });
 #pragma warning restore 612, 618
         }

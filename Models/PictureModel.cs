@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace WebApp.MemesMVC.Models
 {
@@ -8,15 +9,15 @@ namespace WebApp.MemesMVC.Models
 
         public int UserId { get; set; }
 
+        [AllowNull]
         public string UrlAddress { get; set; }
 
-        public DateTime UploadTime { get; set; }
+        public DateTime UploadTime { get; set; } = DateTime.Now;
         
-        //public string LocalPath { get; set; }
+        [AllowNull]
+        public string LocalPath { get; set; }
 
-        //public bool IsAccepted { get; set; }
-
-
+        public bool IsAccepted { get; set; } = false;
 
     }
 }
