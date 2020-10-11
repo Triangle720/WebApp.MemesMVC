@@ -1,4 +1,12 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿/* form show / hide
+---------------------------------- */
 
-// Write your JavaScript code.
+function showForm(divName, button) {
+    document.getElementById(divName).style.display = "block";
+    document.getElementById(button).style.display = "none";
+}
+
+function hideForm(divName, button) {
+    document.getElementById(divName).style.display = "none";
+    document.getElementById(button).style.display = "block";
+}

@@ -1,22 +1,96 @@
 ﻿@using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor httpContextAccessor
 
+@model IEnumerable<WebApp.MemesMVC.Models.UserModel>
+
 @{
-    ViewData["Title"] = "Management";
+    ViewData["Title"] = "Index";
 }
 
-<h1>Management</h1>
-<div class="form-group btn btn-primary">
-    <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">check new pictures</a>
-</div>
-<div class="form-group btn btn-primary">
-    <a class="nav-link text-dark" asp-area="" asp-route-roleType="@RoleTypes.USER" asp-route-pageIndex="1"
-       asp-controller="Management" asp-action="UsersManager">Manage users</a>
-</div>
-@if (httpContextAccessor.HttpContext.Session.GetString("ROLE") == Enum.GetName(typeof(RoleTypes), RoleTypes.ADMIN))
+@if (ViewBag.RoleType == RoleTypes.USER)
+{
+    <h1>Users list</h1>
+}
+else
+{
+    <h1>Moderators list</h1>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nickname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountCreationTime)
+            </th>
+            <th>
+                <p>Status</p>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nickname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountCreationTime)
+                </td>
+                @if (item.IsBanned)
+                {
+                    <td>
+                        <p class="text-danger">Banned</p>
+                    </td>
+                    <td>
+                        <a asp-action="BanManager" asp-route-userId=@item.Id
+                           asp-route-roleType=@ViewBag.RoleType asp-route-pageIndex=@ViewBag.PageIndex>Unban</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <p class="text-success">Not banned</p>
+                    </td>
+                    <td>
+                        @if (httpContextAccessor.HttpContext.Session.GetString("ROLE") == Enum.GetName(typeof(RoleTypes), RoleTypes.ADMIN))
+                        {
+                            <a asp-action="ChangeRole" asp-route-userId="@item.Id" asp-route-pageIndex=@ViewBag.PageIndex>Change role |</a>
+                        }
+                        <a asp-action="BanManager"  asp-route-userId="@item.Id"
+                           asp-route-roleType=@ViewBag.RoleType asp-route-pageIndex=@ViewBag.PageIndex>Ban</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if ((int)ViewBag.PageIndex > 1)
 {
     <div class="form-group btn btn-primary">
-        <a class="nav-link text-dark" asp-area="" asp-route-roleType="@RoleTypes.MODERATOR" asp-route-pageIndex="1"
-           asp-controller="Management" asp-action="UsersManager">Manage moderators</a>
+        <a class="nav-link text-dark" asp-route-roleType=@ViewBag.RoleType asp-route-pageIndex=@(ViewBag.PageIndex - 1)
+           asp-controller="Management" asp-action="Index"> Prev </a>
     </div>
 }
+
+@if (Model.Count() == 10)
+{
+    <div class="form-group btn btn-primary">
+        <a class="nav-link text-dark" asp-route-roleType=@ViewBag.RoleType asp-route-pageIndex=@(ViewBag.PageIndex + 1)
+           asp-controller="Management" asp-action="Index"> Next </a>
+    </div>
+}
+
+<div>
+    <a asp-controller="Home" asp-action="Management">Back</a>
+</div>

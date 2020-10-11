@@ -8,31 +8,25 @@
 }
 
 @if (httpContextAccessor.HttpContext.Session.GetString("TOKEN") == null)
-{
-    <h1>Login</h1>
-    <div class="row">
-        <div class="col-md-2">
-            <form asp-action="Login">
+{<div class="form-container">
+     <h1>  Sign in  </h1>
+    <hr />
+            <form asp-action="Login" class="form-center">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Login" class="control-label"></label>
                     <input placeholder="Enter your login" asp-for="Login" class="form-control" />
-                    <span asp-validation-for="Login" class="text-danger"></span>
-                    <p class="text-danger"> @ViewBag.LoginError </p>
                 </div>
                 <div class="form-group">
                     <label asp-for="Password" class="control-label"></label>
                     <input type="password" placeholder="Enter your password" asp-for="Password" class="form-control" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                    <p class="text-danger"> @ViewBag.PasswordError </p>
+                    <p class="text-danger"> @ViewBag.Error </p>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Login" class="btn btn-primary" />
+                    <input type="submit" value="Sign in" class="btn btn-primary" />
                 </div>
             </form>
-        </div>
-    </div>
-
+</div>
 }
 
 

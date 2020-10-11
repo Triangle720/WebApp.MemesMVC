@@ -149,7 +149,10 @@ C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\zh-H
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\Razor\Views\Login\Index.cshtml.g.cs
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\Razor\Views\Register\Index.cshtml.g.cs
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\Razor\Views\Management\Index.cshtml.g.cs
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\Razor\Views\Management\BanManager.cshtml.g.cs
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\Razor\Views\Management\ChangeRole.cshtml.g.cs
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\WebApp.MemesMVC.csproj.CoreCompileInputs.cache
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\WebApp.MemesMVC.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\Razor\Views\Management\Index.cshtml.g.cs
-C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\Razor\Views\Management\UsersManager.cshtml.g.cs
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\Razor\Views\Home\Management.cshtml.g.cs
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\Razor\Views\Home\Profile.cshtml.g.cs

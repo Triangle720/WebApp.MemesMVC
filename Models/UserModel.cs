@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
@@ -16,20 +17,20 @@ namespace WebApp.MemesMVC.Models
     {
         public int Id { get; set; }
 
-        [StringLength(20, MinimumLength = 4)]
+        [StringLength(20, MinimumLength = 4, ErrorMessage = "4 - 20 chars expected")]
         [Required]
         public string Login { get; set; }
 
-        [StringLength(256, MinimumLength = 6)]
+        [StringLength(256, MinimumLength = 6, ErrorMessage = "6+ chars expected")]
         [Required]
         public string Password { get; set; }
 
-        [StringLength(20, MinimumLength = 4)]
+        [StringLength(20, MinimumLength = 4, ErrorMessage ="4 - 20 chars expected")]
         [Required]
         public string Nickname { get; set; }
 
         [StringLength(100)]
-        [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]
+        [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$", ErrorMessage = "Wrong format")]
         [Required]
         public string Email { get; set; }
 
@@ -43,5 +44,8 @@ namespace WebApp.MemesMVC.Models
 
         [AllowNull]
         public DateTime ?BanExpireIn { get; set; }
+
+        [StringLength(100)]
+        public string BanReason { get; set; } = "";
     }
 }

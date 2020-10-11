@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using WebApp.MemesMVC.Models;
 
 namespace WebApp.MemesMVC.Data

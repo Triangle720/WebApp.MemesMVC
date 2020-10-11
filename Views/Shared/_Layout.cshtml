@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebApp.MemesMVC</title>
+    <title>@ViewData["Title"] - Memes World</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -14,7 +14,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Meme World</a>
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">Meme World</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -27,31 +27,31 @@
                                 <a class="nav-link text-dark"> Welcome @httpContextAccessor.HttpContext.Session.GetString("NICKNAME")!</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Random</a>
+                                <a class="nav-link text-dark" asp-controller="" asp-action="">Random</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Add your meme!</a>
+                                <a class="nav-link text-dark" asp-controller="" asp-action="">Add your meme!</a>
                             </li>
                             @if (httpContextAccessor.HttpContext.Session.GetString("ROLE") != Enum.GetName(typeof(RoleTypes), RoleTypes.USER))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Management" asp-action="Index">Management</a>
+                                    <a class="nav-link text-dark" asp-controller="Home" asp-action="Management">Management</a>
                                 </li>
                             }
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Profile</a>
+                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Profile">Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
+                                <a class="nav-link text-dark" asp-controller="Login" asp-action="Logout">Logout</a>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+                                <a class="nav-link text-dark" asp-controller="Login" asp-action="Index">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Index">Register</a>
+                                <a class="nav-link text-dark" asp-controller="Register" asp-action="Index">Register</a>
                             </li>
                         }
                     </ul>
@@ -60,13 +60,13 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
+    <footer class="border-top footer">
+        <div class="container rainbow rainbow_text_animated">
             <a>&copy; @DateTime.Now.Year - Meme World made by Przemysław Słoma</a>
         </div>
     </footer>

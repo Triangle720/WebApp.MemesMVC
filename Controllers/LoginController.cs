@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using WebApp.MemesMVC.Data;
 using WebApp.MemesMVC.Models;
 using WebApp.MemesMVC.Security;
+using System;
 
 namespace WebApp.MemesMVC.Controllers
 {
@@ -38,56 +35,49 @@ namespace WebApp.MemesMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Bind("Login, Password")] UserModel user)
         {
-            var userTemp = new UserModel();
+            var tempUser = new UserModel();
 
             try 
-            { 
-                userTemp = await _context.Users.Where(u => u.Login == user.Login).FirstAsync(); 
+            {
+                tempUser = await _context.Users.Where(u => u.Login == user.Login).FirstAsync(); 
             }
             catch 
             {
-                ViewBag.LoginError = "User not exists";
+                ViewBag.Error = "Wrong username or password";
                 return View("Index"); 
             }
 
-            if (!Encryptor.IsPasswordCorrect(user.Password, userTemp.Password))
+            if (!Encryptor.IsPasswordCorrect(user.Password, tempUser.Password))
             {
-                ViewBag.PasswordError = "Wrong password";
+                ViewBag.Error = "Wrong username or password";
                 return View("Index");
             }
-
-            SymmetricSecurityKey symmetricKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secret));
-            SigningCredentials signingCredentials = new SigningCredentials(symmetricKey, SecurityAlgorithms.HmacSha256Signature);
-
-            List<Claim> claims = new List<Claim>();
-
-            switch(userTemp.Role)
+            else if(tempUser.IsBanned)
             {
-                case RoleTypes.USER:
-                    claims.Add(new Claim(ClaimTypes.Role, Enum.GetName(typeof(RoleTypes), RoleTypes.USER)));
-                    break;
-                case RoleTypes.MODERATOR:
-                    claims.Add(new Claim(ClaimTypes.Role, Enum.GetName(typeof(RoleTypes), RoleTypes.MODERATOR)));
-                    break;
-                case RoleTypes.ADMIN:
-                    claims.Add(new Claim(ClaimTypes.Role, Enum.GetName(typeof(RoleTypes), RoleTypes.ADMIN)));
-                    break;
+                if (tempUser.BanExpireIn <= DateTime.Now)
+                {
+                    tempUser.IsBanned = false;
+                    tempUser.BanExpireIn = null;
+                    tempUser.BanReason = "";
+
+                    _context.Entry(tempUser).State = EntityState.Modified;
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    ViewBag.Error = "Your account is banned. Ban expires in: " + tempUser.BanExpireIn;
+                    return View("Index");
+                }
             }
 
-            var token = new JwtSecurityToken(
-                issuer: "INO",
-                audience: userTemp.Login.ToString(),
-                expires: DateTime.Now.AddMinutes(int.Parse(_expireTimeInMinutes)),
-                signingCredentials: signingCredentials,
-                claims: claims
-                );
+            var token = await JWTManager.AssignToken(tempUser, _secret, _expireTimeInMinutes);
 
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
             string tokenString = tokenHandler.WriteToken(token);
             JwtSecurityToken jwtToken = tokenHandler.ReadJwtToken(tokenString);
 
             HttpContext.Session.SetString("LOGIN", jwtToken.Audiences.ToArray()[0]);
-            HttpContext.Session.SetString("NICKNAME", userTemp.Nickname);
+            HttpContext.Session.SetString("NICKNAME", tempUser.Nickname);
             HttpContext.Session.SetString("TOKEN", tokenString);
             HttpContext.Session.SetString("ROLE", jwtToken.Claims.First(x => x.Type.ToString().Equals(ClaimTypes.Role)).Value);
 

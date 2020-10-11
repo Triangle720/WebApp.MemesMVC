@@ -63,14 +63,128 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
+    background-color: #EAEAEA;
 }
 
 .footer {
     position: absolute;
     bottom: 0;
     width: 100%;
+    background-color: #E0E0E0;
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
 }
 
+.footer a::selection {
+    background-color: none;
+    color: none;
+}
 
+/* FORM CONTAINER
+-------------------------------------------------- */
+
+.form-container {
+    margin-top: 10%;
+    text-align: center;
+}
+
+.form-container hr {
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
+.form-container input {
+    width: 100%;
+    background-color: #EAEAEA;
+    border-color: #3B3B3B;
+    color: #3B3B3B;
+    transition-duration: 0.2s;
+}
+
+.form-container input:hover{
+    background-color:white;
+    box-shadow: 0 0 1px 1px #3B3B3B;
+    border-color:black;
+    color:#3B3B3B;
+}
+
+.form-container input:focus{
+    box-shadow:none;
+    border-color:#3B3B3B;
+}
+
+.form-container input::selection{
+    color: #7A7A7A;
+}
+
+.form-container a {
+    width: 100%;
+    background-color: #EAEAEA;
+    border-color: #3B3B3B;
+    color: #3B3B3B;
+    transition-duration: 0.2s;
+}
+
+.form-container a:hover{
+    background-color:white;
+    box-shadow: 0 0 1px 1px #3B3B3B;
+    border-color:black;
+    color:#3B3B3B;
+}
+
+.form-container a:focus{
+    box-shadow:none;
+    border-color:#3B3B3B;
+}
+
+.form-container a::selection{
+    color: #7A7A7A;
+}
+
+.form-center {
+    margin-top:2%;
+    display: inline-block;
+}
+
+.form-center label::selection{
+    text-shadow: 2px 2px 0 #E0E0E0;
+    color: #7A7A7A;
+}
+
+.form-container h1::selection {
+    text-shadow: 2px 2px 0 #E0E0E0;
+    color: #7A7A7A;
+}
+
+/* rainbow footer text
+--------------------------*/
+#shadowBox {
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 3px solid;
+}
+
+.rainbow {
+    text-align: center;
+    font-size: 24px;
+    font-family: monospace;
+    letter-spacing: 0.5px;
+}
+
+.rainbow_text_animated {
+    background: linear-gradient(to right, #6666ff, #0099ff, #00ff00, #ff3399, #6666ff);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: rainbow_animation 5s ease-in-out infinite;
+    background-size: 400% 100%;
+}
+
+@keyframes rainbow_animation {
+    0%,100% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 100% 0;
+    }
+}
