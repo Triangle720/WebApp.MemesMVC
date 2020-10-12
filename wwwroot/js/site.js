@@ -1,12 +1,12 @@
 ﻿/* form show / hide
 ---------------------------------- */
 
-function showForm(divName, button) {
-    document.getElementById(divName).style.display = "block";
+function showForm(divId, button) {
+    document.getElementById(divId).style.display = "block";
     document.getElementById(button).style.display = "none";
 }
 
-function hideForm(divName, button) {
-    document.getElementById(divName).style.display = "none";
+function hideForm(divId, button) {
+    document.getElementById(divId).style.display = "none";
     document.getElementById(button).style.display = "block";
 }

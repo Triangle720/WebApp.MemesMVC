@@ -75,85 +75,80 @@ body {
     line-height: 60px; /* Vertically center the text there */
 }
 
-.footer a::selection {
-    background-color: none;
-    color: none;
+    .footer a::selection {
+        background-color: none;
+        color: none;
+    }
+
+/* From & list containers
+-------------------------------------------------- */
+.list-container {
+    margin-top: 10%;
 }
 
-/* FORM CONTAINER
--------------------------------------------------- */
+    .list-container dl {
+        margin-top: 5%;
+    }
 
-.form-container {
+.list-center dt {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+}
+
+.form-container, .list-container {
     margin-top: 10%;
     text-align: center;
 }
 
-.form-container hr {
-    margin-left: 35%;
-    margin-right: 35%;
-}
+    .form-container hr, .list-container hr {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
 
-.form-container input {
-    width: 100%;
-    background-color: #EAEAEA;
-    border-color: #3B3B3B;
-    color: #3B3B3B;
-    transition-duration: 0.2s;
-}
+    .form-container input, .form-container a, .list-container input {
+        width: 100%;
+        background-color: #EAEAEA;
+        border-color: #3B3B3B;
+        color: #3B3B3B;
+        transition-duration: 0.2s;
+    }
 
-.form-container input:hover{
-    background-color:white;
-    box-shadow: 0 0 1px 1px #3B3B3B;
-    border-color:black;
-    color:#3B3B3B;
-}
+        .form-container input:hover, .form-container a:hover, .list-container input:hover {
+            background-color: white;
+            box-shadow: 0 0 1px 1px #3B3B3B;
+            border-color: black;
+            color: #3B3B3B;
+        }
 
-.form-container input:focus{
-    box-shadow:none;
-    border-color:#3B3B3B;
-}
+        .form-container input:focus, .form-container a:focus, .list-container input:focus {
+            box-shadow: none;
+            border-color: #3B3B3B;
+        }
 
-.form-container input::selection{
-    color: #7A7A7A;
-}
+        .form-container input::selection, .form-container a::selection, .list-container input::selection {
+            color: mediumpurple;
+        }
 
-.form-container a {
-    width: 100%;
-    background-color: #EAEAEA;
-    border-color: #3B3B3B;
-    color: #3B3B3B;
-    transition-duration: 0.2s;
-}
-
-.form-container a:hover{
-    background-color:white;
-    box-shadow: 0 0 1px 1px #3B3B3B;
-    border-color:black;
-    color:#3B3B3B;
-}
-
-.form-container a:focus{
-    box-shadow:none;
-    border-color:#3B3B3B;
-}
-
-.form-container a::selection{
-    color: #7A7A7A;
-}
-
-.form-center {
-    margin-top:2%;
+.form-center, .list-center {
+    margin-top: 2%;
     display: inline-block;
 }
 
-.form-center label::selection{
-    text-shadow: 2px 2px 0 #E0E0E0;
-    color: #7A7A7A;
+    .form-center label::selection, .list-center dd::selection, .list-center dt::selection {
+        text-shadow: 2px 2px 0 #C0C0C0;
+        color: mediumpurple;
+    }
+
+.form-container h1::selection, .list-container h1::selection {
+    text-shadow: 2px 2px 0 #C0C0C0;
+    color: mediumpurple;
 }
 
-.form-container h1::selection {
-    text-shadow: 2px 2px 0 #E0E0E0;
-    color: #7A7A7A;
+.btn-space input{
+    margin-top:0.5px;
+    width:45%;
+    display:inline;
 }
 
 /* rainbow footer text

@@ -10,17 +10,17 @@
     <hr />
     <div class="form-center">
         <div class="form-group">
-            <a class="btn btn-primary" asp-route-roleType=@RoleTypes.USER asp-route-pageIndex=1
+            <a class="btn" asp-route-roleType=@RoleTypes.USER asp-route-pageIndex=1
                asp-controller="Management" asp-action="Index">Check new pictures</a>
         </div>
         <div class="form-group">
-            <a class="btn btn-primary" asp-route-roleType=@RoleTypes.USER asp-route-pageIndex=1
+            <a class="btn" asp-route-roleType=@RoleTypes.USER asp-route-pageIndex=1
                asp-controller="Management" asp-action="Index">Manage users</a>
         </div>
         @if (httpContextAccessor.HttpContext.Session.GetString("ROLE") == Enum.GetName(typeof(RoleTypes), RoleTypes.ADMIN))
         {
             <div class="form-group">
-                <a class="btn btn-primary" asp-route-roleType=@RoleTypes.MODERATOR asp-route-pageIndex=1
+                <a class="btn" asp-route-roleType=@RoleTypes.MODERATOR asp-route-pageIndex=1
                    asp-controller="Management" asp-action="Index">Manage moderators</a>
             </div>
         }

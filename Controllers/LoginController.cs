@@ -10,6 +10,8 @@ using WebApp.MemesMVC.Data;
 using WebApp.MemesMVC.Models;
 using WebApp.MemesMVC.Security;
 using System;
+using Castle.Core.Internal;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace WebApp.MemesMVC.Controllers
 {
@@ -35,39 +37,13 @@ namespace WebApp.MemesMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Bind("Login, Password")] UserModel user)
         {
-            var tempUser = new UserModel();
+            var tempUser = await _context.Users.Where(u => u.Login == user.Login).FirstOrDefaultAsync();
+            var results = await ErrorHandler(user, tempUser);
 
-            try 
+            if (!results.IsNullOrEmpty())
             {
-                tempUser = await _context.Users.Where(u => u.Login == user.Login).FirstAsync(); 
-            }
-            catch 
-            {
-                ViewBag.Error = "Wrong username or password";
-                return View("Index"); 
-            }
-
-            if (!Encryptor.IsPasswordCorrect(user.Password, tempUser.Password))
-            {
-                ViewBag.Error = "Wrong username or password";
+                ViewBag.Error = results;
                 return View("Index");
-            }
-            else if(tempUser.IsBanned)
-            {
-                if (tempUser.BanExpireIn <= DateTime.Now)
-                {
-                    tempUser.IsBanned = false;
-                    tempUser.BanExpireIn = null;
-                    tempUser.BanReason = "";
-
-                    _context.Entry(tempUser).State = EntityState.Modified;
-                    await _context.SaveChangesAsync();
-                }
-                else
-                {
-                    ViewBag.Error = "Your account is banned. Ban expires in: " + tempUser.BanExpireIn;
-                    return View("Index");
-                }
             }
 
             var token = await JWTManager.AssignToken(tempUser, _secret, _expireTimeInMinutes);
@@ -88,6 +64,28 @@ namespace WebApp.MemesMVC.Controllers
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Index");
+        }
+
+        public async Task<string> ErrorHandler(UserModel user, UserModel tempUser)
+        {
+            if (user.Password.IsNullOrEmpty() || user.Login.IsNullOrEmpty()) return "Fill all fields";
+            else if (tempUser == null || !Encryptor.IsPasswordCorrect(user.Password, tempUser.Password)) return "Wrong username or password";
+            else if (tempUser.IsBanned)
+            {
+                // QUARZT.net istead of this
+                if (tempUser.BanExpireIn <= DateTime.Now)
+                {
+                    tempUser.IsBanned = false;
+                    tempUser.BanExpireIn = null;
+                    tempUser.BanReason = "";
+
+                    _context.Entry(tempUser).State = EntityState.Modified;
+                    await _context.SaveChangesAsync();
+                }
+                else return "Your account is banned. Ban expires in: " + tempUser.BanExpireIn;
+            }
+
+            return "";
         }
     }
 }
