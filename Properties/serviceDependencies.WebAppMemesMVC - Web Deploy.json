@@ -5,6 +5,18 @@
       "type": "mssql.azure",
       "connectionId": "DbConnectionString",
       "secretStore": "AzureAppSettings"
+    },
+    "secrets1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.KeyVault/vaults/WebAppMemesMVCvault",
+      "type": "secrets.keyVault",
+      "connectionId": "VaultUri",
+      "secretStore": "AzureAppSettings"
+    },
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "ConnectionString/Memes",
+      "suggestion": "true",
+      "ignored": "true"
     }
   }
 }

@@ -43,7 +43,7 @@ namespace WebApp.MemesMVC.Data
                     Password = "0408F3C997F309C03B08BF3A4BC7B730",
                     Email = "mod@mod.net",
                     AccountCreationTime = DateTime.Now,
-                    Role = RoleTypes.ADMIN
+                    Role = RoleTypes.MODERATOR
                  });
         }
     }

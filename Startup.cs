@@ -29,8 +29,7 @@ namespace WebApp.MemesMVC
             services.AddControllersWithViews();
             services.AddDbContext<DatabaseContext>(options =>
             {
-                //options.UseLazyLoadingProxies().UseSqlServer(Configuration["ConnectionString:Memes"]); local env
-                options.UseLazyLoadingProxies().UseSqlServer(Configuration["DbConnectionString"]); //azure test
+                options.UseLazyLoadingProxies().UseSqlServer(Configuration["DbConnectionString"]);
             });
 
             services.AddSession();

@@ -161,3 +161,21 @@ C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Release\netcoreapp3.1\st
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Release\netcoreapp3.1\WebApp.MemesMVC.dll
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Release\netcoreapp3.1\WebApp.MemesMVC.pdb
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Release\netcoreapp3.1\WebApp.MemesMVC.genruntimeconfig.cache
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Release\netcoreapp3.1\Properties\serviceDependencies.local.json
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Release\netcoreapp3.1\Properties\ServiceDependencies\local\mssql1.arm.json
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Release\netcoreapp3.1\Properties\ServiceDependencies\WebAppMemesMVC - Web Deploy\secrets1.arm.json
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Release\netcoreapp3.1\Azure.Core.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Release\netcoreapp3.1\Azure.Identity.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Release\netcoreapp3.1\Microsoft.Azure.KeyVault.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Release\netcoreapp3.1\Microsoft.Azure.KeyVault.WebKey.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Release\netcoreapp3.1\Microsoft.Azure.Services.AppAuthentication.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Release\netcoreapp3.1\Microsoft.Extensions.Configuration.AzureKeyVault.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Release\netcoreapp3.1\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Release\netcoreapp3.1\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Release\netcoreapp3.1\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Release\netcoreapp3.1\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Release\netcoreapp3.1\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Release\netcoreapp3.1\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Release\netcoreapp3.1\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Release\netcoreapp3.1\Microsoft.Rest.ClientRuntime.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Release\netcoreapp3.1\Microsoft.Rest.ClientRuntime.Azure.dll

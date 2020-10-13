@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "secrets1": {
+      "restored": true,
+      "restoreTime": "2020-10-13T00:55:55.8829471Z"
+    },
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2020-10-13T00:56:14.3588585Z"
+    }
+  },
+  "parameters": {
+    "mssql1.subscriptionId": {
+      "Type": "subscription",
+      "Value": "5df0c39d-25be-429d-bded-49f2c9fdb6f9"
+    },
+    "mssql1.resourceGroupName": {
+      "Type": "resourceGroup",
+      "Value": "WebAppMemesMVCResources"
+    }
+  }
+}

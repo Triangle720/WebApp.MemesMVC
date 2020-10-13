@@ -8,4 +8,9 @@ Ten plik jest wykorzystywany przez proces publikowania/pakowania projektu intern
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAKe0elae0oEGE3b0YG4mZbwAAAAACAAAAAAAQZgAAAAEAACAAAAAZHmqETR0YjFHI78NXlwzPgFzY90QIpeOLO6yKjr3E6AAAAAAOgAAAAAIAACAAAACxOsgvM50pQl2oE7H+IEinvFZmWjvDSPpblYa1Sw/XCIAAAACj4c96Ms/anBwHoaWUKafA8Mr0N05xPpOD0MhUEHOHk04EeuWP1jeGbiEQhUJRvYaoqIIiuJW1eM/VXJKtQrE0UNtbMoKzbzpi7eljqlMIJebkmxuJL5lk29heVI72It0dMNvWOz9qbhciqwHqhmYRoqXgpfiUoFCTzYdYvExpXkAAAAD+TsrvgwWY14fFOB2P8RdpGw6A0WVu8edgjWKU6DRa7MWq8X4Wkj4Jm6nbHc3sPR+WcsMEOD+p0djGr4k5X9io</EncryptedPassword>
   </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DbConnectionString">
+      <Value>Data Source=tcp:memes-mvc-server.database.windows.net,1433%3bInitial Catalog=WebApp.MemesMVC_db%3bUser Id=MemesDbAdmin%40memes-mvc-server%3bPassword=AX93m4S2ow9ul</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
 </Project>

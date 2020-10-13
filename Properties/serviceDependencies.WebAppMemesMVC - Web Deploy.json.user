@@ -1,11 +1,23 @@
 {
   "dependencies": {
+    "mssql2": {
+      "restored": true,
+      "restoreTime": "2020-10-13T01:09:30.2852531Z"
+    },
+    "secrets1": {
+      "restored": true,
+      "restoreTime": "2020-10-13T01:09:11.1207326Z"
+    },
     "mssql1": {
       "restored": true,
       "restoreTime": "2020-10-13T00:16:00.5534961Z"
     }
   },
   "parameters": {
+    "secrets1.resourceGroupName": {
+      "Type": "resourceGroup",
+      "Value": "WebAppMemesMVCResources"
+    },
     "mssql1.subscriptionId": {
       "Type": "subscription",
       "Value": "5df0c39d-25be-429d-bded-49f2c9fdb6f9"
@@ -13,6 +25,10 @@
     "mssql1.resourceGroupName": {
       "Type": "resourceGroup",
       "Value": "WebAppMemesMVCResources"
+    },
+    "secrets1.subscriptionId": {
+      "Type": "subscription",
+      "Value": "5df0c39d-25be-429d-bded-49f2c9fdb6f9"
     }
   }
 }
