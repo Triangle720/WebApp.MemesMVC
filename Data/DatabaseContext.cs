@@ -27,6 +27,7 @@ namespace WebApp.MemesMVC.Data
                 .HasData(
                 new UserModel()
                 {
+                    Id = 1,
                     Login = "admin",
                     Nickname = "DefinitlyNotAnAdmin",
                     Password = "62F04A011FBB80030BB0A13701C20B41",
@@ -36,6 +37,7 @@ namespace WebApp.MemesMVC.Data
                 },
                 new UserModel()
                 {
+                    Id = 2,
                     Login = "moderator",
                     Nickname = "moderator",
                     Password = "0408F3C997F309C03B08BF3A4BC7B730",

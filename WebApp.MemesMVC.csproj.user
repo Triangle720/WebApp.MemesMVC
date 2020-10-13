@@ -15,5 +15,6 @@
     <WebStackScaffolding_IsReferencingScriptLibrariesSelected>False</WebStackScaffolding_IsReferencingScriptLibrariesSelected>
     <WebStackScaffolding_LayoutPageFile />
     <WebStackScaffolding_DbContextTypeFullName>WebApp.MemesMVC.Data.DatabaseContext</WebStackScaffolding_DbContextTypeFullName>
+    <NameOfLastUsedPublishProfile>WebAppMemesMVC - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

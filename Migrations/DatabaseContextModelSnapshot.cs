@@ -65,7 +65,8 @@ namespace WebApp.MemesMVC.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("BanReason")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -102,6 +103,32 @@ namespace WebApp.MemesMVC.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccountCreationTime = new DateTime(2020, 10, 13, 2, 31, 5, 320, DateTimeKind.Local).AddTicks(2298),
+                            BanReason = "",
+                            Email = "admin@admin.net",
+                            IsBanned = false,
+                            Login = "admin",
+                            Nickname = "DefinitlyNotAnAdmin",
+                            Password = "62F04A011FBB80030BB0A13701C20B41",
+                            Role = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AccountCreationTime = new DateTime(2020, 10, 13, 2, 31, 5, 320, DateTimeKind.Local).AddTicks(3902),
+                            BanReason = "",
+                            Email = "mod@mod.net",
+                            IsBanned = false,
+                            Login = "moderator",
+                            Nickname = "moderator",
+                            Password = "0408F3C997F309C03B08BF3A4BC7B730",
+                            Role = 2
+                        });
                 });
 
             modelBuilder.Entity("WebApp.MemesMVC.Models.PictureModel", b =>

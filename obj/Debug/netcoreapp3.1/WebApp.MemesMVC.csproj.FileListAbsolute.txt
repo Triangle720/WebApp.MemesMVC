@@ -156,3 +156,8 @@ C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\WebA
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\WebApp.MemesMVC.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\Razor\Views\Home\Management.cshtml.g.cs
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\Razor\Views\Home\Profile.cshtml.g.cs
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\libman.json
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\WebAppMemesMVC - Web Deploy\profile.arm.json
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.json
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.WebAppMemesMVC - Web Deploy.json
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\WebAppMemesMVC - Web Deploy\mssql1.arm.json
