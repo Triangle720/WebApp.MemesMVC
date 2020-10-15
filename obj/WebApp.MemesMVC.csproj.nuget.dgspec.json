@@ -42,6 +42,18 @@
               "target": "Package",
               "version": "[1.2.3, )"
             },
+            "Azure.Storage.Blobs": {
+              "target": "Package",
+              "version": "[12.3.0, )"
+            },
+            "Azure.Storage.Files.Shares": {
+              "target": "Package",
+              "version": "[12.1.0, )"
+            },
+            "Azure.Storage.Queues": {
+              "target": "Package",
+              "version": "[12.2.0, )"
+            },
             "Microsoft.AspNet.WebApi.Client": {
               "target": "Package",
               "version": "[5.2.7, )"
@@ -67,6 +79,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.8, )"
+            },
+            "Microsoft.Extensions.Azure": {
+              "target": "Package",
+              "version": "[1.0.0, )"
             },
             "Microsoft.Extensions.Configuration.AzureKeyVault": {
               "target": "Package",

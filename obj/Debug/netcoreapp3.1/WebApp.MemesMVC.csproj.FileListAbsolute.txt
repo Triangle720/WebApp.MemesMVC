@@ -205,6 +205,7 @@ C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Syst
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netstandard2.0\System.Data.SqlClient.dll
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Data.SqlClient.dll
-C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\WebApp.MemesMVC.csproj.CoreCompileInputs.cache
-C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\WebApp.MemesMVC.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\Razor\Views\Home\Random.cshtml.g.cs
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Azure.Storage.Common.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Azure.Storage.Blobs.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Azure.Storage.Queues.dll

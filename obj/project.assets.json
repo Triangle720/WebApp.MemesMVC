@@ -38,6 +38,58 @@
           "lib/netstandard2.0/Azure.Identity.dll": {}
         }
       },
+      "Azure.Storage.Blobs/12.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Azure.Core": "1.0.2",
+          "Azure.Storage.Common": "12.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Azure.Storage.Blobs.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Azure.Storage.Blobs.dll": {}
+        }
+      },
+      "Azure.Storage.Common/12.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Azure.Core": "1.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Azure.Storage.Common.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Azure.Storage.Common.dll": {}
+        }
+      },
+      "Azure.Storage.Files.Shares/12.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Azure.Core": "1.0.2",
+          "Azure.Storage.Common": "12.2.0",
+          "System.Text.Json": "4.6.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Azure.Storage.Files.Shares.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Azure.Storage.Files.Shares.dll": {}
+        }
+      },
+      "Azure.Storage.Queues/12.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Azure.Core": "1.0.2",
+          "Azure.Storage.Common": "12.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Azure.Storage.Queues.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Azure.Storage.Queues.dll": {}
+        }
+      },
       "Ben.Demystifier/0.1.2": {
         "type": "package",
         "dependencies": {
@@ -611,6 +663,24 @@
         },
         "runtime": {
           "lib/netstandard2.0/_._": {}
+        }
+      },
+      "Microsoft.Extensions.Azure/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Azure.Core": "1.0.0",
+          "Azure.Identity": "1.0.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "2.1.0",
+          "Microsoft.Extensions.Configuration.Binder": "2.1.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.1.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.1.0",
+          "Microsoft.Extensions.Options": "2.1.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Azure.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Azure.dll": {}
         }
       },
       "Microsoft.Extensions.Caching.Abstractions/3.1.8": {
@@ -3289,6 +3359,70 @@
         "pkgicon.png"
       ]
     },
+    "Azure.Storage.Blobs/12.3.0": {
+      "sha512": "RyzwZqPqAS8EDiPjFT+mk+tSaNpj8jEIXcTgLfpkvbHfUHscsre/5ZIQ040DNHQiUBPT4DGKPwvVZYAwG6VhNQ==",
+      "type": "package",
+      "path": "azure.storage.blobs/12.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "CHANGELOG.md",
+        "README.md",
+        "azure.storage.blobs.12.3.0.nupkg.sha512",
+        "azure.storage.blobs.nuspec",
+        "lib/netstandard2.0/Azure.Storage.Blobs.dll",
+        "lib/netstandard2.0/Azure.Storage.Blobs.xml",
+        "pkgicon.png"
+      ]
+    },
+    "Azure.Storage.Common/12.2.0": {
+      "sha512": "neZaUGmU9UmvXPs94I5fC42o8AaQLn9IG/xSdfs8POloArwdycAbC9CqtlIJLVvVSw5O/6eagRSo/7mYhIC8gg==",
+      "type": "package",
+      "path": "azure.storage.common/12.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "CHANGELOG.md",
+        "README.md",
+        "azure.storage.common.12.2.0.nupkg.sha512",
+        "azure.storage.common.nuspec",
+        "lib/netstandard2.0/Azure.Storage.Common.dll",
+        "lib/netstandard2.0/Azure.Storage.Common.xml",
+        "pkgicon.png"
+      ]
+    },
+    "Azure.Storage.Files.Shares/12.1.0": {
+      "sha512": "qF0nsCNh+SqUvRyx0zG8teJsEImeFlO5uqpcWtursupvhyG+kBJOuSRjUQDoK1Uw4tS2IxkrTV1R5vXP03KGcA==",
+      "type": "package",
+      "path": "azure.storage.files.shares/12.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "CHANGELOG.md",
+        "README.md",
+        "azure.storage.files.shares.12.1.0.nupkg.sha512",
+        "azure.storage.files.shares.nuspec",
+        "lib/netstandard2.0/Azure.Storage.Files.Shares.dll",
+        "lib/netstandard2.0/Azure.Storage.Files.Shares.xml",
+        "pkgicon.png"
+      ]
+    },
+    "Azure.Storage.Queues/12.2.0": {
+      "sha512": "i78L7cu95JZPKHvRPA/Xnom7bVyxbnsn/KtFdKnRwaBRUhnuM7xPBTzpReZB7+gw4i6s1VJDSbD2xLJXKi+XNg==",
+      "type": "package",
+      "path": "azure.storage.queues/12.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "CHANGELOG.md",
+        "README.md",
+        "azure.storage.queues.12.2.0.nupkg.sha512",
+        "azure.storage.queues.nuspec",
+        "lib/netstandard2.0/Azure.Storage.Queues.dll",
+        "lib/netstandard2.0/Azure.Storage.Queues.xml",
+        "pkgicon.png"
+      ]
+    },
     "Ben.Demystifier/0.1.2": {
       "sha512": "72yB6sCgTKX6Wv3pZnbkANJrC4JzxPnss4LuaUpIeRiiIrfWKJw6/DNaFUYAckx6EluP3YydHreIvJT9tnljJA==",
       "type": "package",
@@ -3983,6 +4117,19 @@
         "tools/net461/win-x86/ef.exe",
         "tools/netcoreapp2.0/any/ef.dll",
         "tools/netcoreapp2.0/any/ef.runtimeconfig.json"
+      ]
+    },
+    "Microsoft.Extensions.Azure/1.0.0": {
+      "sha512": "3mKCSxklqThrGg7UQrgf2cw6z+QWWit4SvOvTI5m6TvqfuqLvJqwmrg/9i6N8Ncs0dUoue2Tdp+GcnqHrFTDXA==",
+      "type": "package",
+      "path": "microsoft.extensions.azure/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.Extensions.Azure.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Azure.xml",
+        "microsoft.extensions.azure.1.0.0.nupkg.sha512",
+        "microsoft.extensions.azure.nuspec"
       ]
     },
     "Microsoft.Extensions.Caching.Abstractions/3.1.8": {
@@ -10642,12 +10789,16 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Azure.Identity >= 1.2.3",
+      "Azure.Storage.Blobs >= 12.3.0",
+      "Azure.Storage.Files.Shares >= 12.1.0",
+      "Azure.Storage.Queues >= 12.2.0",
       "Microsoft.AspNet.WebApi.Client >= 5.2.7",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 3.1.8",
       "Microsoft.EntityFrameworkCore >= 3.1.8",
       "Microsoft.EntityFrameworkCore.Proxies >= 3.1.8",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.8",
       "Microsoft.EntityFrameworkCore.Tools >= 3.1.8",
+      "Microsoft.Extensions.Azure >= 1.0.0",
       "Microsoft.Extensions.Configuration.AzureKeyVault >= 3.1.8",
       "Microsoft.TeamFoundationServer.ExtendedClient >= 16.153.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.4",
@@ -10695,6 +10846,18 @@
             "target": "Package",
             "version": "[1.2.3, )"
           },
+          "Azure.Storage.Blobs": {
+            "target": "Package",
+            "version": "[12.3.0, )"
+          },
+          "Azure.Storage.Files.Shares": {
+            "target": "Package",
+            "version": "[12.1.0, )"
+          },
+          "Azure.Storage.Queues": {
+            "target": "Package",
+            "version": "[12.2.0, )"
+          },
           "Microsoft.AspNet.WebApi.Client": {
             "target": "Package",
             "version": "[5.2.7, )"
@@ -10720,6 +10883,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[3.1.8, )"
+          },
+          "Microsoft.Extensions.Azure": {
+            "target": "Package",
+            "version": "[1.0.0, )"
           },
           "Microsoft.Extensions.Configuration.AzureKeyVault": {
             "target": "Package",

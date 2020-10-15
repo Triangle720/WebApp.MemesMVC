@@ -17,6 +17,12 @@
       "connectionId": "ConnectionString/Memes",
       "suggestion": "true",
       "ignored": "true"
+    },
+    "storage1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/webappmemesmvcstorage",
+      "type": "storage.azure",
+      "connectionId": "BlobStorageConnectionString",
+      "secretStore": "AzureAppSettings"
     }
   }
 }

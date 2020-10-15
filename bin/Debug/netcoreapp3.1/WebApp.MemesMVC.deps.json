@@ -25,6 +25,8 @@
       "WebApp.MemesMVC/1.0.0": {
         "dependencies": {
           "Azure.Identity": "1.2.3",
+          "Azure.Storage.Blobs": "12.3.0",
+          "Azure.Storage.Queues": "12.2.0",
           "Microsoft.AspNet.WebApi.Client": "5.2.7",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.8",
           "Microsoft.EntityFrameworkCore": "3.1.8",
@@ -346,6 +348,50 @@
         },
         "compile": {
           "lib/netstandard2.0/Azure.Identity.dll": {}
+        }
+      },
+      "Azure.Storage.Blobs/12.3.0": {
+        "dependencies": {
+          "Azure.Core": "1.4.1",
+          "Azure.Storage.Common": "12.2.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Azure.Storage.Blobs.dll": {
+            "assemblyVersion": "12.3.0.0",
+            "fileVersion": "12.300.20.11104"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Azure.Storage.Blobs.dll": {}
+        }
+      },
+      "Azure.Storage.Common/12.2.0": {
+        "dependencies": {
+          "Azure.Core": "1.4.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Azure.Storage.Common.dll": {
+            "assemblyVersion": "12.2.0.0",
+            "fileVersion": "12.200.20.11104"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Azure.Storage.Common.dll": {}
+        }
+      },
+      "Azure.Storage.Queues/12.2.0": {
+        "dependencies": {
+          "Azure.Core": "1.4.1",
+          "Azure.Storage.Common": "12.2.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Azure.Storage.Queues.dll": {
+            "assemblyVersion": "12.2.0.0",
+            "fileVersion": "12.200.20.11104"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Azure.Storage.Queues.dll": {}
         }
       },
       "Ben.Demystifier/0.1.2": {
@@ -4471,6 +4517,27 @@
       "sha512": "sha512-FPqqvv9RFdl/OwZFrXZQafQsQcbQc7rV21H1DKuaG6obTyKv2ltM2UkbC3uoCJDMSwn56RuCxIbvU9nrpVuJLA==",
       "path": "azure.identity/1.2.3",
       "hashPath": "azure.identity.1.2.3.nupkg.sha512"
+    },
+    "Azure.Storage.Blobs/12.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RyzwZqPqAS8EDiPjFT+mk+tSaNpj8jEIXcTgLfpkvbHfUHscsre/5ZIQ040DNHQiUBPT4DGKPwvVZYAwG6VhNQ==",
+      "path": "azure.storage.blobs/12.3.0",
+      "hashPath": "azure.storage.blobs.12.3.0.nupkg.sha512"
+    },
+    "Azure.Storage.Common/12.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-neZaUGmU9UmvXPs94I5fC42o8AaQLn9IG/xSdfs8POloArwdycAbC9CqtlIJLVvVSw5O/6eagRSo/7mYhIC8gg==",
+      "path": "azure.storage.common/12.2.0",
+      "hashPath": "azure.storage.common.12.2.0.nupkg.sha512"
+    },
+    "Azure.Storage.Queues/12.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-i78L7cu95JZPKHvRPA/Xnom7bVyxbnsn/KtFdKnRwaBRUhnuM7xPBTzpReZB7+gw4i6s1VJDSbD2xLJXKi+XNg==",
+      "path": "azure.storage.queues/12.2.0",
+      "hashPath": "azure.storage.queues.12.2.0.nupkg.sha512"
     },
     "Ben.Demystifier/0.1.2": {
       "type": "package",
