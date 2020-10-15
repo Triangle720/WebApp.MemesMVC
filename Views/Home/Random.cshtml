@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Random";
+}
+
+@model WebApp.MemesMVC.Models.PictureModel
+
+<div class="image-list">
+    <h1>Your random meme</h1>
+    <hr />
+    <div class="image-container">
+        <h2>@Model.Title</h2>
+        <h6>Author: </h6>
+        <img class="image-main-style" src="@Model.UrlAddress" />
+    </div>
+
+</div>

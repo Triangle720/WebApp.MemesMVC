@@ -42,6 +42,10 @@
               "target": "Package",
               "version": "[1.2.3, )"
             },
+            "Microsoft.AspNet.WebApi.Client": {
+              "target": "Package",
+              "version": "[5.2.7, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[3.1.8, )"
@@ -68,9 +72,17 @@
               "target": "Package",
               "version": "[3.1.8, )"
             },
+            "Microsoft.TeamFoundationServer.ExtendedClient": {
+              "target": "Package",
+              "version": "[16.153.0, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.4, )"
+            },
+            "Quartz": {
+              "target": "Package",
+              "version": "[3.2.0, )"
             }
           },
           "imports": [

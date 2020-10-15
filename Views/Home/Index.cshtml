@@ -1,7 +1,37 @@
-﻿@{
+﻿@model IEnumerable<WebApp.MemesMVC.Models.PictureModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">MAIN PAGE</h1>
+<div class="image-list">
+    <h1>Memes World</h1>
+    <hr />
+    @foreach (var item in Model)
+    {
+        <div class="image-container">
+            <h2>@item.Title</h2>
+            <h6>Author: </h6>
+            <img class="image-main-style" src="@item.UrlAddress" />
+        </div>
+        <hr />
+    }
+
+    <div class="nav-buttons">
+        @if ((int)ViewBag.PageIndex > 1)
+        {
+            <div class="form-group">
+                <a class="btn" asp-route-pageIndex=@(ViewBag.PageIndex - 1)
+                   asp-controller="Home" asp-action="Index"> Prev </a>
+            </div>
+        }
+
+        @if (Model.Count() == 10)
+        {
+            <div class="form-group">
+                <a class="btn" asp-route-pageIndex=@(ViewBag.PageIndex + 1)
+                   asp-controller="Home" asp-action="Index"> Next </a>
+            </div>
+        }
+    </div>
 </div>

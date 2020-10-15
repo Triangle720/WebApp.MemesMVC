@@ -2,7 +2,7 @@
 
 namespace WebApp.MemesMVC.Migrations
 {
-    public partial class EmailLenghtFix : Migration
+    public partial class EmailLengthFix : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

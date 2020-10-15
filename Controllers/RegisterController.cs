@@ -36,17 +36,17 @@ namespace WebApp.MemesMVC.Controllers
 
                     if (_context.Users.Any(u => u.Email == user.Email))
                     {
-                        ViewBag.EmailAssigned = "Email already assigned";
+                        ViewBag.ErrorMessage = "Email already assigned";
                         goto case false;
                     }
                     else if (_context.Users.Any(u => u.Login == user.Login))
                     {
-                        ViewBag.UserAlreadyExists = "User already exists";
+                        ViewBag.ErrorMessage = "User already exists";
                         goto case false;
                     }
                     else if (_context.Users.Any(u => u.Nickname == user.Nickname))
                     {
-                        ViewBag.NicknameAssigned = "Nickname already assigned";
+                        ViewBag.ErrorMessage = "Nickname already assigned";
                         goto case false;
                     }
 

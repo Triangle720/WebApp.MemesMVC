@@ -11,7 +11,7 @@ namespace WebApp.MemesMVC.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
     [Migration("20201008215852_EmailLenghtFix")]
-    partial class EmailLenghtFix
+    partial class EmailLengthFix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

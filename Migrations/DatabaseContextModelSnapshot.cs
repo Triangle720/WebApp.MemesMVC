@@ -26,11 +26,12 @@ namespace WebApp.MemesMVC.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("IsAccepted")
-                        .HasColumnType("bit");
-
                     b.Property<string>("LocalPath")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<DateTime>("UploadTime")
                         .HasColumnType("datetime2");
@@ -38,10 +39,7 @@ namespace WebApp.MemesMVC.Migrations
                     b.Property<string>("UrlAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserModelId")
+                    b.Property<int>("UserModelId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -108,7 +106,7 @@ namespace WebApp.MemesMVC.Migrations
                         new
                         {
                             Id = 1,
-                            AccountCreationTime = new DateTime(2020, 10, 13, 2, 31, 5, 320, DateTimeKind.Local).AddTicks(2298),
+                            AccountCreationTime = new DateTime(2020, 10, 15, 6, 11, 53, 218, DateTimeKind.Local).AddTicks(6635),
                             BanReason = "",
                             Email = "admin@admin.net",
                             IsBanned = false,
@@ -120,14 +118,14 @@ namespace WebApp.MemesMVC.Migrations
                         new
                         {
                             Id = 2,
-                            AccountCreationTime = new DateTime(2020, 10, 13, 2, 31, 5, 320, DateTimeKind.Local).AddTicks(3902),
+                            AccountCreationTime = new DateTime(2020, 10, 15, 6, 11, 53, 218, DateTimeKind.Local).AddTicks(7738),
                             BanReason = "",
                             Email = "mod@mod.net",
                             IsBanned = false,
                             Login = "moderator",
                             Nickname = "moderator",
                             Password = "0408F3C997F309C03B08BF3A4BC7B730",
-                            Role = 2
+                            Role = 1
                         });
                 });
 
@@ -135,7 +133,9 @@ namespace WebApp.MemesMVC.Migrations
                 {
                     b.HasOne("WebApp.MemesMVC.Models.UserModel", null)
                         .WithMany("Pictures")
-                        .HasForeignKey("UserModelId");
+                        .HasForeignKey("UserModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

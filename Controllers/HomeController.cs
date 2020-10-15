@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -25,9 +27,24 @@ namespace WebApp.MemesMVC.Controllers
 
         #region VIEW REGION
         [AllowAnonymous]
-        public IActionResult Index()
+        public IActionResult Index(int pageIndex)
         {
-            return View();
+            if (pageIndex <= 0) pageIndex = 1;
+            ViewBag.PageIndex = pageIndex;
+
+            var pictures = _context.Pictures.Where(p => p.UrlAddress != null)
+                                            .OrderByDescending(p => p.UploadTime)
+                                            .Skip((pageIndex - 1) * 10)
+                                            .Take(10)
+                                            .ToList();
+            return View(pictures);
+        }
+
+        [AllowAnonymous]
+        public IActionResult Random()
+        {
+            var random = _context.Pictures.OrderBy(o => Guid.NewGuid()).FirstOrDefault();
+            return View(random);
         }
 
         [RoleRequirement("ADMIN,MODERATOR")]
@@ -41,6 +58,12 @@ namespace WebApp.MemesMVC.Controllers
         {
             var user = _context.Users.Where(u => u.Login == HttpContext.Session.GetString("LOGIN")).FirstOrDefault();
             return View(user);
+        }
+
+        [RoleRequirement("ADMIN,MODERATOR,USER")]
+        public IActionResult AddMeme(bool isSucceed = false)
+        {
+            return View(isSucceed);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -74,6 +97,48 @@ namespace WebApp.MemesMVC.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Logout", "Login");
+        }
+
+        [RoleRequirement("ADMIN,MODERATOR,USER")]
+        [HttpPost]
+        public async Task<IActionResult> UploadPicture(IFormFile file, string description = "")
+        {
+            if (file != null && file.Length > 0)
+            {
+                var fileExtenstion = Enum.GetNames(typeof(ImageExtensions)).Where(e => file.FileName.ToUpper().Contains(e)).FirstOrDefault();
+                if (fileExtenstion != null)
+                {
+                    try
+                    {
+                        var fileId = _context.Pictures.Where(p => p.LocalPath != null).Count() + 1;
+                        var imgLocalPath = Path.Combine("imgs", fileId.ToString() + '.' + fileExtenstion);
+                        var destinationPath = Path.Combine("wwwroot", imgLocalPath);
+
+                        using (var stream = System.IO.File.Create(destinationPath))
+                        {
+                            await file.CopyToAsync(stream);
+                        }
+
+                        var temp = new PictureModel();
+                        temp.UserModelId = _context.Users.Where(u => u.Login == HttpContext.Session.GetString("LOGIN")).FirstOrDefault().Id;
+                        temp.LocalPath = imgLocalPath;
+                        temp.Title = description;
+
+                        _context.Pictures.Add(temp);
+                        await _context.SaveChangesAsync();
+
+                        return RedirectToAction("AddMeme", new { isSucceed = true });
+                    }
+                    catch
+                    {
+                        ViewBag.Message = "An error occured during upload";
+                    }
+                }
+                else ViewBag.Message = "Bad file extension.";
+            }        
+            else ViewBag.Message = "You have not specified a file.";
+
+            return View("AddMeme");
         }
         #endregion
     }
