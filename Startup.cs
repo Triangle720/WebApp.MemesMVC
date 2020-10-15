@@ -11,7 +11,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System;
 using System.Net.Http.Headers;
-using Newtonsoft.Json;
 
 namespace WebApp.MemesMVC
 {
@@ -38,9 +37,7 @@ namespace WebApp.MemesMVC
             services.AddHttpClient("imgur", c =>
             {
                 c.BaseAddress = new Uri("https://api.imgur.com/3/");
-                //c.DefaultRequestHeaders.Add("Token", "04b848281ba47a447f1ef8d0cd990924384beacb");
                 c.DefaultRequestHeaders.Add("Authorization", "Client-ID 020881901511e2b");
-                //c.DefaultRequestHeaders.Add("Content-Type", "multipart/form-data");
                 c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             });
 

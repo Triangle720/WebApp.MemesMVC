@@ -9,7 +9,6 @@ using WebApp.MemesMVC.Security;
 using System.Net.Http;
 using System.IO;
 using Microsoft.AspNetCore.Authorization;
-using System;
 
 namespace WebApp.MemesMVC.Controllers
 {
@@ -129,7 +128,7 @@ namespace WebApp.MemesMVC.Controllers
             if (tempPicture == null || tempPicture.LocalPath.IsNullOrEmpty()) return RedirectToAction("PictureManager"); //already accepted
 
             using var client = _clientFactory.CreateClient("imgur");
-            var byteContent = new ByteArrayContent(await System.IO.File.ReadAllBytesAsync(Path.Combine("wwwroot", tempPicture.LocalPath)));
+            var byteContent = new ByteArrayContent(await System.IO.File.ReadAllBytesAsync(Path.Combine("C:\\home\\data\\Pics", tempPicture.LocalPath)));
             var response = await client.PostAsync("image", byteContent);
 
             var imgUrl = response.Content.ReadAsStringAsync().Result
@@ -140,7 +139,7 @@ namespace WebApp.MemesMVC.Controllers
             if (response.IsSuccessStatusCode)
             {   
                 tempPicture.UrlAddress = imgUrl.Substring(imgUrl.IndexOf(':') + 2, imgUrl.LastIndexOf('"') - imgUrl.IndexOf(':') - 2);
-                if (System.IO.File.Exists(Path.Combine("wwwroot", tempPicture.LocalPath))) System.IO.File.Delete(Path.Combine("wwwroot", tempPicture.LocalPath));
+                if (System.IO.File.Exists(Path.Combine("C:\\home\\data\\Pics", tempPicture.LocalPath))) System.IO.File.Delete(Path.Combine("wwwroot", tempPicture.LocalPath));
                 tempPicture.LocalPath = "";
                 _context.Entry(tempPicture).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
@@ -158,7 +157,7 @@ namespace WebApp.MemesMVC.Controllers
 
             if (temp == null || temp.LocalPath.IsNullOrEmpty()) return RedirectToAction("PictureManager"); //already discarded
 
-            var path = Path.Combine("wwwroot", temp.LocalPath);
+            var path = Path.Combine("C:\\home\\data\\Pics", temp.LocalPath);
 
             if (System.IO.File.Exists(path))
             {
@@ -180,7 +179,7 @@ namespace WebApp.MemesMVC.Controllers
             if (tempPicture != null && !tempPicture.LocalPath.IsNullOrEmpty())
             {
 
-                var path = Path.Combine("wwwroot", tempPicture.LocalPath);
+                var path = Path.Combine("C:\\home\\data\\Pics", tempPicture.LocalPath);
 
                 if (System.IO.File.Exists(path))
                 {

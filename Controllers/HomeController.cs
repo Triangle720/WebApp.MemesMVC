@@ -112,7 +112,7 @@ namespace WebApp.MemesMVC.Controllers
                     {
                         var fileId = _context.Pictures.Where(p => p.LocalPath != null).Count() + 1;
                         var imgLocalPath = Path.Combine("imgs", fileId.ToString() + '.' + fileExtenstion);
-                        var destinationPath = Path.Combine("wwwroot", imgLocalPath);
+                        var destinationPath = Path.Combine("C:\\home\\data\\Pics", imgLocalPath);
 
                         using (var stream = System.IO.File.Create(destinationPath))
                         {
