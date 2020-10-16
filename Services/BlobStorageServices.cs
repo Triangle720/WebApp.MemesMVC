@@ -13,7 +13,7 @@ namespace BlobStorageDemo
 
         public async static Task<CloudBlobContainer> GetBlobContainer()
         {
-            var cloudStorageAccount = CloudStorageAccount.Parse(BlobConnectionString);
+            var cloudStorageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=webappmemesmvcstorage;AccountKey=ZEeLMnZ27BCG4UVv61s/AniVUlMaPHnMzfGJw6nBsbDoXKjFzk2zphTCLmbOqGZK85PgBLaEd7nyqA+xo3rV1A==;EndpointSuffix=core.windows.net");
             var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
             var cloudBlobContainer = cloudBlobClient.GetContainerReference("image");
 
@@ -41,7 +41,7 @@ namespace BlobStorageDemo
                 cloudBlockBlob.Properties.ContentType = file.ContentType;
                 await cloudBlockBlob.UploadFromStreamAsync(file.OpenReadStream());
 
-                return cloudBlockBlob.Uri.ToString();
+                return cloudBlockBlob.Uri.ToString(); 
             }
             catch
             {
