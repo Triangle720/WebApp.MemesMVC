@@ -46,7 +46,7 @@ namespace WebApp.MemesMVC.Controllers
                 return View("Index");
             }
 
-            var token = await JWTManager.AssignToken(tempUser, _secret, _expireTimeInMinutes);
+            var token = await JWTManager.AssignToken(tempUser);
 
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
             string tokenString = tokenHandler.WriteToken(token);
