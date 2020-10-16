@@ -31,7 +31,7 @@ namespace WebApp.MemesMVC
 
         public void ConfigureServices(IServiceCollection services)
         {
-            BlobStorageService.BlobConnectionString = Configuration["BlobConnectionString"];
+            BlobStorageService.BlobConnectionString = Configuration["ConnectionStrings:BlobConnectionString"];
             JWTManager.Secret = Configuration["JWT:secret"];
             JWTManager.ExpireTimeInMinutes = Configuration["JWT:expireTimeInMinutes"];
 
