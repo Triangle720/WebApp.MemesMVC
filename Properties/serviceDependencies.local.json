@@ -7,10 +7,13 @@
       "secretStore": "LocalSecretsFile"
     },
     "secrets1": {
-      "resourceId": null,
-      "type": "secrets.user",
-      "connectionId": null,
-      "secretStore": null
+      "type": "secrets.user"
+    },
+    "storage1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/webappmemesmvcstorage",
+      "type": "storage.azure",
+      "connectionId": "BlobStorageConnectionString",
+      "secretStore": "LocalSecretsFile"
     }
   }
 }

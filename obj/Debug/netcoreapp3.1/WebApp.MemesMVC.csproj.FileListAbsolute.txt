@@ -161,7 +161,6 @@ C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Prop
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\WebAppMemesMVC - Web Deploy\mssql1.arm.json
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.local.json
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\local\mssql1.arm.json
-C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\WebAppMemesMVC - Web Deploy\secrets1.arm.json
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Azure.Core.dll
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Azure.Identity.dll
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.Extensions.Msal.dll
@@ -217,3 +216,5 @@ C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\WebA
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\WebApp.MemesMVC.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Azure.Extensions.AspNetCore.Configuration.Secrets.dll
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Azure.Security.KeyVault.Secrets.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\local\storage1.arm.json
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\WebAppMemesMVC - Web Deploy\secrets1.arm.json

@@ -119,10 +119,8 @@ namespace WebApp.MemesMVC.Controllers
             var content = new StringContent(tempPicture.LocalPath);
             var response = await client.PostAsync("image", content);
 
-            var imgUrl = response.Content.ReadAsStringAsync().Result
-                                                             .Split(',')
-                                                             .Where(s => s.Contains("link"))
-                                                             .FirstOrDefault();
+            var imgUrl = response.Content.ReadAsStringAsync().Result;
+            imgUrl = imgUrl.Split(',').Where(s => s.Contains("link")).FirstOrDefault();
     
             if (response.IsSuccessStatusCode)
             {

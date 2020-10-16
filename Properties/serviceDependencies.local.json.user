@@ -1,8 +1,12 @@
 {
   "dependencies": {
+    "storage1": {
+      "restored": true,
+      "restoreTime": "2020-10-16T05:27:48.3413788Z"
+    },
     "secrets1": {
       "restored": true,
-      "restoreTime": "2020-10-13T00:55:55.8829471Z"
+      "restoreTime": "2020-10-16T05:27:46.1062687Z"
     },
     "mssql1": {
       "restored": true,
@@ -10,6 +14,14 @@
     }
   },
   "parameters": {
+    "storage1.resourceGroupName": {
+      "Type": "resourceGroup",
+      "Value": "WebAppMemesMVCResources"
+    },
+    "storage1.subscriptionId": {
+      "Type": "subscription",
+      "Value": "5df0c39d-25be-429d-bded-49f2c9fdb6f9"
+    },
     "mssql1.subscriptionId": {
       "Type": "subscription",
       "Value": "5df0c39d-25be-429d-bded-49f2c9fdb6f9"
