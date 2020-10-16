@@ -12,7 +12,7 @@
     "storage1": {
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/webappmemesmvcstorage",
       "type": "storage.azure",
-      "connectionId": "BlobStorageConnectionString",
+      "connectionId": "BlobConnectionString",
       "secretStore": "LocalSecretsFile"
     }
   }
