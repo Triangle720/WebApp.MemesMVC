@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "trh0G+GIsW+RNLwH+Mn90wJpzkQOu0y1kW57BRxlDn6PiCIfsitnYztYgS3K39i8TymZZc1kQdmIIfNkEmrwnA==",
+  "dgSpecHash": "TfxGQcPW0X+4w6CGs2uywLBZo7OrT1MHxA+Wm1KEJ2B/kQXehFvxDI/f74Hw3sBgwSwaSxmGH1feKE5gBiWVBw==",
   "success": true,
   "projectFilePath": "C:\\Users\\przslo\\source\\repos\\WebApp\\WebApp.MemesMVC\\WebApp.MemesMVC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\przslo\\.nuget\\packages\\azure.core\\1.4.1\\azure.core.1.4.1.nupkg.sha512",
+    "C:\\Users\\przslo\\.nuget\\packages\\azure.extensions.aspnetcore.configuration.secrets\\1.0.0\\azure.extensions.aspnetcore.configuration.secrets.1.0.0.nupkg.sha512",
     "C:\\Users\\przslo\\.nuget\\packages\\azure.identity\\1.2.3\\azure.identity.1.2.3.nupkg.sha512",
+    "C:\\Users\\przslo\\.nuget\\packages\\azure.security.keyvault.secrets\\4.0.1\\azure.security.keyvault.secrets.4.0.1.nupkg.sha512",
     "C:\\Users\\przslo\\.nuget\\packages\\azure.storage.blobs\\12.3.0\\azure.storage.blobs.12.3.0.nupkg.sha512",
     "C:\\Users\\przslo\\.nuget\\packages\\azure.storage.common\\12.2.0\\azure.storage.common.12.2.0.nupkg.sha512",
     "C:\\Users\\przslo\\.nuget\\packages\\azure.storage.files.shares\\12.1.0\\azure.storage.files.shares.12.1.0.nupkg.sha512",
@@ -208,7 +210,8 @@
     "C:\\Users\\przslo\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\przslo\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
     "C:\\Users\\przslo\\.nuget\\packages\\system.xml.xpath\\4.3.0\\system.xml.xpath.4.3.0.nupkg.sha512",
-    "C:\\Users\\przslo\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.3.0\\system.xml.xpath.xmldocument.4.3.0.nupkg.sha512"
+    "C:\\Users\\przslo\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.3.0\\system.xml.xpath.xmldocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\przslo\\.nuget\\packages\\windowsazure.storage\\9.3.3\\windowsazure.storage.9.3.3.nupkg.sha512"
   ],
   "logs": [
     {

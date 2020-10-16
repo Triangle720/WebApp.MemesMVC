@@ -1,14 +1,14 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Castle.Core.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApp.MemesMVC.Data;
 using WebApp.MemesMVC.Models;
 using WebApp.MemesMVC.Security;
 using System.Net.Http;
-using System.IO;
 using Microsoft.AspNetCore.Authorization;
+using BlobStorageDemo;
+using System;
 
 namespace WebApp.MemesMVC.Controllers
 {
@@ -67,7 +67,7 @@ namespace WebApp.MemesMVC.Controllers
         public IActionResult PictureManager(string errorMessage = "")
         {
             if (errorMessage != "") ViewBag.Error = errorMessage;
-            var picture = _context.Pictures.Where(p => p.LocalPath.Contains("imgs")).FirstOrDefault();
+            var picture = _context.Pictures.Where(p => !p.IsAccepted).FirstOrDefault();
             return View(picture);
         }
         #endregion
@@ -78,13 +78,7 @@ namespace WebApp.MemesMVC.Controllers
         public async Task<IActionResult> Ban([Bind("Id, BanExpireIn, BanReason")] UserModel user, int pageIndex)
         {
             var tempUser = await _context.Users.Where(u => u.Id == user.Id).FirstOrDefaultAsync();
-
-            tempUser.IsBanned = true;
-            tempUser.BanExpireIn = user.BanExpireIn;
-            tempUser.BanReason = user.BanReason;
-
-            _context.Entry(tempUser).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            if (tempUser != null && !tempUser.IsBanned) await Ban(tempUser, user);
 
             return RedirectToAction("Index", "Management", new { roleType = tempUser.Role, pageIndex });
         }
@@ -94,13 +88,7 @@ namespace WebApp.MemesMVC.Controllers
         public async Task<IActionResult> Unban([Bind("Id")] UserModel user, int pageIndex)
         {
             var tempUser = await _context.Users.Where(u => u.Id == user.Id).FirstOrDefaultAsync();
-
-            tempUser.IsBanned = false;
-            tempUser.BanExpireIn = null;
-            tempUser.BanReason = "";
-
-            _context.Entry(tempUser).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            if (tempUser != null && tempUser.IsBanned) await Unban(tempUser);
 
             return RedirectToAction("Index", "Management", new { roleType = tempUser.Role, pageIndex });
         }
@@ -113,7 +101,6 @@ namespace WebApp.MemesMVC.Controllers
             var roleHolder = tempUser.Role;
 
             tempUser.Role = user.Role;
-
             _context.Entry(tempUser).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
@@ -125,22 +112,23 @@ namespace WebApp.MemesMVC.Controllers
         public async Task<IActionResult> AcceptPicture(int pictureId)
         {
             var tempPicture = _context.Pictures.Where(p => p.Id == pictureId).FirstOrDefault();
-            if (tempPicture == null || tempPicture.LocalPath.IsNullOrEmpty()) return RedirectToAction("PictureManager"); //already accepted
+
+            if (tempPicture == null || tempPicture.IsAccepted) return RedirectToAction("PictureManager");
 
             using var client = _clientFactory.CreateClient("imgur");
-            var byteContent = new ByteArrayContent(await System.IO.File.ReadAllBytesAsync(Path.Combine("C:\\home\\data\\Pics", tempPicture.LocalPath)));
-            var response = await client.PostAsync("image", byteContent);
+            var content = new StringContent(tempPicture.LocalPath);
+            var response = await client.PostAsync("image", content);
 
             var imgUrl = response.Content.ReadAsStringAsync().Result
                                                              .Split(',')
                                                              .Where(s => s.Contains("link"))
                                                              .FirstOrDefault();
-
+    
             if (response.IsSuccessStatusCode)
-            {   
+            {
+                //I did some string operations instead of creating new model for JSON Serialization
                 tempPicture.UrlAddress = imgUrl.Substring(imgUrl.IndexOf(':') + 2, imgUrl.LastIndexOf('"') - imgUrl.IndexOf(':') - 2);
-                if (System.IO.File.Exists(Path.Combine("C:\\home\\data\\Pics", tempPicture.LocalPath))) System.IO.File.Delete(Path.Combine("wwwroot", tempPicture.LocalPath));
-                tempPicture.LocalPath = "";
+                tempPicture.IsAccepted = true;
                 _context.Entry(tempPicture).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
                 return RedirectToAction("PictureManager");
@@ -153,19 +141,8 @@ namespace WebApp.MemesMVC.Controllers
         [RoleRequirement("ADMIN,MODERATOR")]
         public async Task<IActionResult> DiscardPicture(int pictureId)
         {
-            var temp = await _context.Pictures.Where(p => p.Id == pictureId).FirstOrDefaultAsync();
-
-            if (temp == null || temp.LocalPath.IsNullOrEmpty()) return RedirectToAction("PictureManager"); //already discarded
-
-            var path = Path.Combine("C:\\home\\data\\Pics", temp.LocalPath);
-
-            if (System.IO.File.Exists(path))
-            {
-                System.IO.File.Delete(path);
-                _context.Remove(temp);
-                await _context.SaveChangesAsync();
-            }
-
+            var tempPicture = await _context.Pictures.Where(p => p.Id == pictureId).FirstOrDefaultAsync();
+            if (tempPicture != null) await DeleteImageAsync(tempPicture);
             return RedirectToAction("PictureManager");
         }
 
@@ -176,28 +153,37 @@ namespace WebApp.MemesMVC.Controllers
             var tempPicture = await _context.Pictures.Where(p => p.Id == pictureId).FirstOrDefaultAsync();
             var tempUser = await _context.Users.Where(u => u.Id == user.Id).FirstOrDefaultAsync();
 
-            if (tempPicture != null && !tempPicture.LocalPath.IsNullOrEmpty())
-            {
+            if (tempPicture != null) await DeleteImageAsync(tempPicture);
+            if (tempUser != null && !tempUser.IsBanned) await Ban(tempUser, user);
 
-                var path = Path.Combine("C:\\home\\data\\Pics", tempPicture.LocalPath);
-
-                if (System.IO.File.Exists(path))
-                {
-                    System.IO.File.Delete(path);
-                    _context.Remove(tempPicture);
-                }
-            }
-
-            if (tempUser != null && !tempUser.IsBanned)
-            {
-                tempUser.BanReason = user.BanReason;
-                tempUser.BanExpireIn = user.BanExpireIn;
-                tempUser.IsBanned = true;
-                _context.Entry(tempUser).State = EntityState.Modified;
-            }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction("PictureManager");
+        }
+        #endregion
+
+        #region addidional functions
+        public async Task Ban(UserModel tempUser, [Bind("Id, BanReason, BanExpireIn")] UserModel UserBanInfos)
+        {
+            tempUser.BanReason = UserBanInfos.BanReason;
+            tempUser.BanExpireIn = UserBanInfos.BanExpireIn;
+            tempUser.IsBanned = true;
+            _context.Entry(tempUser).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task Unban(UserModel user)
+        {
+            user.IsBanned = false;
+            user.BanReason = string.Empty;
+            user.BanExpireIn = DateTime.MinValue;
+            _context.Entry(user).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteImageAsync(PictureModel picture)
+        {
+            await BlobStorageService.DeleteImageAsync(picture.LocalPath.Substring(picture.LocalPath.LastIndexOf('/') + 1));
+            _context.Remove(picture);
+            await _context.SaveChangesAsync();       
         }
         #endregion
     }

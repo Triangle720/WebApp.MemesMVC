@@ -15,33 +15,33 @@ using Microsoft.Extensions.Azure;
 using Azure.Storage.Queues;
 using Azure.Storage.Blobs;
 using Azure.Core.Extensions;
+using BlobStorageDemo;
 
 namespace WebApp.MemesMVC
 {
     public class Startup
     {
-        private readonly string _secret;
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            _secret = configuration.GetSection("JWT").GetSection("secret").Value;
         }
 
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            BlobStorageService.BlobConnectionString = Configuration["ConnectionStrings:BlobConnectionString"];
+
             services.AddControllersWithViews();
             services.AddDbContext<DatabaseContext>(options =>
             {
-                options.UseLazyLoadingProxies().UseSqlServer(Configuration["DbConnectionString"]);
+                options.UseLazyLoadingProxies().UseSqlServer(Configuration["ConnectionStrings:DbConnectionString"]);
             });
 
             services.AddHttpClient("imgur", c =>
             {
                 c.BaseAddress = new Uri("https://api.imgur.com/3/");
-                c.DefaultRequestHeaders.Add("Authorization", "Client-ID 020881901511e2b");
+                c.DefaultRequestHeaders.Add("Authorization", "Client-ID " + Configuration["ImgurClientId"]);
                 c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             });
 
@@ -49,7 +49,7 @@ namespace WebApp.MemesMVC
             services.AddDistributedMemoryCache();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            SymmetricSecurityKey symmetricKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secret));
+            SymmetricSecurityKey symmetricKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:secret"]));
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(opt =>
@@ -65,11 +65,6 @@ namespace WebApp.MemesMVC
                 });
 
             services.AddAuthorization();
-            services.AddAzureClients(builder =>
-            {
-                builder.AddBlobServiceClient(Configuration["ConnectionStrings:BlobStorageConnectionString:blob"], preferMsi: true);
-                builder.AddQueueServiceClient(Configuration["ConnectionStrings:BlobStorageConnectionString:queue"], preferMsi: true);
-            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -100,31 +95,6 @@ namespace WebApp.MemesMVC
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-        }
-    }
-    internal static class StartupExtensions
-    {
-        public static IAzureClientBuilder<BlobServiceClient, BlobClientOptions> AddBlobServiceClient(this AzureClientFactoryBuilder builder, string serviceUriOrConnectionString, bool preferMsi)
-        {
-            if (preferMsi && Uri.TryCreate(serviceUriOrConnectionString, UriKind.Absolute, out Uri serviceUri))
-            {
-                return builder.AddBlobServiceClient(serviceUri);
-            }
-            else
-            {
-                return builder.AddBlobServiceClient(serviceUriOrConnectionString);
-            }
-        }
-        public static IAzureClientBuilder<QueueServiceClient, QueueClientOptions> AddQueueServiceClient(this AzureClientFactoryBuilder builder, string serviceUriOrConnectionString, bool preferMsi)
-        {
-            if (preferMsi && Uri.TryCreate(serviceUriOrConnectionString, UriKind.Absolute, out Uri serviceUri))
-            {
-                return builder.AddQueueServiceClient(serviceUri);
-            }
-            else
-            {
-                return builder.AddQueueServiceClient(serviceUriOrConnectionString);
-            }
         }
     }
 }

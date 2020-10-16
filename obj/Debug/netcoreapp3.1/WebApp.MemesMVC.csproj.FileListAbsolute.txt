@@ -209,3 +209,11 @@ C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\Razo
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Azure.Storage.Common.dll
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Azure.Storage.Blobs.dll
 C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Azure.Storage.Queues.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\WebAppMemesMVC - Web Deploy\storage1.arm.json
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Azure.Storage.Files.Shares.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Azure.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Microsoft.WindowsAzure.Storage.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\WebApp.MemesMVC.csproj.CoreCompileInputs.cache
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\obj\Debug\netcoreapp3.1\WebApp.MemesMVC.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Azure.Extensions.AspNetCore.Configuration.Secrets.dll
+C:\Users\przslo\source\repos\WebApp\WebApp.MemesMVC\bin\Debug\netcoreapp3.1\Azure.Security.KeyVault.Secrets.dll

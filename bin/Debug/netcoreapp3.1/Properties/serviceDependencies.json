@@ -4,6 +4,10 @@
       "type": "mssql",
       "connectionId": "DbConnectionString"
     },
+    "storage1": {
+      "type": "storage",
+      "connectionId": "BlobStorageConnectionString"
+    },
     "secrets1": {
       "type": "secrets",
       "connectionId": "VaultUri"

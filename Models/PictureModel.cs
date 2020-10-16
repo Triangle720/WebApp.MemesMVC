@@ -30,5 +30,7 @@ namespace WebApp.MemesMVC.Models
         [StringLength(100, MinimumLength = 0)]
         public string Title { get; set; }
 
+        public bool IsAccepted { get; set; }
+
     }
 }

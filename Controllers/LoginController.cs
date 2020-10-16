@@ -20,7 +20,7 @@ namespace WebApp.MemesMVC.Controllers
         private readonly DatabaseContext _context;
         private readonly string _secret;
         private readonly string _expireTimeInMinutes;
-
+        
         public LoginController(DatabaseContext context, IConfiguration configuration)
         {    
             _context = context;

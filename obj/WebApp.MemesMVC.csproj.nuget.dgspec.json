@@ -38,6 +38,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Azure.Extensions.AspNetCore.Configuration.Secrets": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "Azure.Identity": {
               "target": "Package",
               "version": "[1.2.3, )"
@@ -99,6 +103,10 @@
             "Quartz": {
               "target": "Package",
               "version": "[3.2.0, )"
+            },
+            "WindowsAzure.Storage": {
+              "target": "Package",
+              "version": "[9.3.3, )"
             }
           },
           "imports": [

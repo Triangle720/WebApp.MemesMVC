@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using BlobStorageDemo;
+using Castle.Core.Internal;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -43,7 +44,7 @@ namespace WebApp.MemesMVC.Controllers
         [AllowAnonymous]
         public IActionResult Random()
         {
-            var random = _context.Pictures.OrderBy(o => Guid.NewGuid()).FirstOrDefault();
+            var random = _context.Pictures.OrderBy(o => Guid.NewGuid()).Where(p => p.IsAccepted).FirstOrDefault();
             return View(random);
         }
 
@@ -110,24 +111,24 @@ namespace WebApp.MemesMVC.Controllers
                 {
                     try
                     {
-                        var fileId = _context.Pictures.Where(p => p.LocalPath != null).Count() + 1;
-                        var imgLocalPath = Path.Combine("imgs", fileId.ToString() + '.' + fileExtenstion);
-                        var destinationPath = Path.Combine("C:\\home\\data\\Pics", imgLocalPath);
+                        var imgPath = await BlobStorageService.UploadImageAsync(file);
 
-                        using (var stream = System.IO.File.Create(destinationPath))
+                        if (!imgPath.IsNullOrEmpty())
                         {
-                            await file.CopyToAsync(stream);
+                            var temp = new PictureModel
+                            {
+                                UserModelId = _context.Users.Where(u => u.Login == HttpContext.Session.GetString("LOGIN")).FirstOrDefault().Id,
+                                LocalPath = imgPath, //kinda 'local' path. 
+                                Title = description
+                            };
+
+                            _context.Pictures.Add(temp);
+                            await _context.SaveChangesAsync();
+
+                            return RedirectToAction("AddMeme", new { isSucceed = true });
                         }
 
-                        var temp = new PictureModel();
-                        temp.UserModelId = _context.Users.Where(u => u.Login == HttpContext.Session.GetString("LOGIN")).FirstOrDefault().Id;
-                        temp.LocalPath = imgLocalPath;
-                        temp.Title = description;
-
-                        _context.Pictures.Add(temp);
-                        await _context.SaveChangesAsync();
-
-                        return RedirectToAction("AddMeme", new { isSucceed = true });
+                        throw new ArgumentNullException();
                     }
                     catch
                     {
