@@ -33,7 +33,7 @@ namespace WebApp.MemesMVC.Controllers
             if (pageIndex <= 0) pageIndex = 1;
             ViewBag.PageIndex = pageIndex;
 
-            var pictures = _context.Pictures.Where(p => p.UrlAddress != null)
+            var pictures = _context.Pictures.Where(p => p.IsAccepted)
                                             .OrderByDescending(p => p.UploadTime)
                                             .Skip((pageIndex - 1) * 10)
                                             .Take(10)

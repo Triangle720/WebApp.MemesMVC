@@ -3,14 +3,14 @@
 }
 
 @model WebApp.MemesMVC.Models.PictureModel
-
-<div class="image-list">
-    <h1>Your random meme</h1>
-    <hr />
-    <div class="image-container">
+<div class="row justify-content-md-center">
+    <div class="col-md-10 text-center">
+        <h1>Your random meme</h1>
+        <hr />
         <h2>@Model.Title</h2>
         <h6>Author: </h6>
-        <img class="image-main-style" src="@Model.UrlAddress" />
+        <div class="image-container">
+            <img src="@Model.UrlAddress" />
+        </div>
     </div>
-
 </div>

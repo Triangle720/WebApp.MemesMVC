@@ -12,9 +12,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-custom-color border-bottom mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark-gray mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-controller="Home" asp-action="Index">Meme World</a>
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">Memes World</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,38 +23,35 @@
                     <ul class="navbar-nav flex-grow-1">
                         @if (httpContextAccessor.HttpContext.Session.GetString("TOKEN") != null)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark"> Welcome @httpContextAccessor.HttpContext.Session.GetString("NICKNAME")!</a>
+                            <li class="nav-item col-auto">
+                                <a class="nav-link" asp-controller="Home" asp-action="Random">Random</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Random">Random</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Home" asp-action="AddMeme">Add your meme!</a>
+                            <li class="nav-item col-auto">
+                                <a class="nav-link" asp-controller="Home" asp-action="AddMeme">Add meme!</a>
                             </li>
                             @if (httpContextAccessor.HttpContext.Session.GetString("ROLE") != Enum.GetName(typeof(RoleTypes), RoleTypes.USER))
                             {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-controller="Home" asp-action="Management">Management</a>
+                                <li class="nav-item col-auto">
+                                    <a class="nav-link" asp-controller="Home" asp-action="Management">Management</a>
                                 </li>
                             }
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Profile">Profile</a>
+                            <li class="nav-item col-auto">
+                                <a class="nav-link" asp-controller="Home" asp-action="Profile">Profile</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Login" asp-action="Logout">Logout</a>
+                            <li class="nav-item col-auto">
+                                <a class="nav-link" asp-controller="Login" asp-action="Logout">Logout</a>
                             </li>
                         }
                         else
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Random">Random</a>
+                            <li class="nav-item col-auto">
+                                <a class="nav-link text-orange" asp-controller="Home" asp-action="Random">Random</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Login" asp-action="Index">Login</a>
+                            <li class="nav-item col-auto">
+                                <a class="nav-link text-orange" asp-controller="Login" asp-action="Index">Login</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Register" asp-action="Index">Register</a>
+                            <li class="nav-item col-auto">
+                                <a class="nav-link text-orange" asp-controller="Register" asp-action="Index">Register</a>
                             </li>
                         }
                     </ul>
@@ -68,7 +65,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer">
+    <footer class="footer">
         <div class="container rainbow rainbow_text_animated">
             <a>&copy; @DateTime.Now.Year - Meme World made by Przemysław Słoma</a>
         </div>
