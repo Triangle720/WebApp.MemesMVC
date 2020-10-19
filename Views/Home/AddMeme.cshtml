@@ -4,39 +4,49 @@
     ViewData["Title"] = "New meme";
 }
 
-@if (Model == false)
-{
-    @using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
+<div class="text-center">
+    @if (Model == false)
     {
-        <div class="upload-container">
+        @using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
             <h1>Upload image</h1>
             <hr />
-            <form class="form-center">
-                <div class="form-group">
-                    <h6 class="text-danger">@ViewBag.Message</h6>
-                    <label for="file">Upload Image:</label>
-                    <input type="file" name="file" id="file" onchange="previewFile(this, 'hiddenDiv');" />
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <form>
+                        <div class="form-group form-part">
+                            <label for="text">Description:</label>
+                            <input type="text" name="description" id="description" maxlength="100" autocomplete="off" placeholder="Max 100 characters" />
+                            <h6 class="text-danger">@ViewBag.Message</h6>
+                        </div>
+                        <div class="form-group form-part">
+                            <label for="file">Upload Image:</label>
+                            <input type="file" name="file" id="file" onchange="previewFile(this, 'hiddenDiv');" />
+                        </div>
+                        <div id="hiddenDiv" style="display:none;">
+                            <div class="image-container">
+                                <img id="previewImg" />
+                            </div>
+                            <div class="form-group form-btn">
+                                <input class="btn" type="submit" value="Upload" asp-controller="Home" asp-action="UploadPicture" />
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="text">Description:</label>
-                    <input type="text" name="description" id="description" maxlength="100" autocomplete="off" placeholder="Max 100 characters" />
-                </div>
-                <div id="hiddenDiv" class="form-group" style="display:none;">
-                    <img class="image-main-style" id="previewImg" />
-                    <input class="btn" type="submit" value="Upload" asp-controller="Home" asp-action="UploadPicture"/>
-                </div>
-            </form>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <form>
+                    <h1 class="text-success">Image uploaded!</h1>
+                    <div class="form-group form-btn">
+                        <input class="btn" type="submit" value="Add more!" asp-controller="Home" asp-action="AddMeme" asp-route-isSucceed="!@Model" />
+                    </div>
+                </form>
+            </div>
         </div>
     }
-}
-else
-{
-    <div class="upload-container">
-        <form>
-            <h1 class="text-success">Image uploaded!</h1>
-            <div class="form-group">
-                <input class="btn" type="submit" value="Add more!" asp-controller="Home" asp-action="AddMeme" asp-route-isSucceed="!@Model"/>
-            </div>
-        </form>
-    </div>
-}
+</div>

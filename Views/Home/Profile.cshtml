@@ -6,57 +6,61 @@
     string password = "";
 }
 
-<div class="list-container">
+<div class="text-center">
     <h1>Profile</h1>
     <hr />
-    <dl class="list-center">
-        <dt>
-            @Html.DisplayNameFor(model => model.Login)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Login)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Nickname)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nickname)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd>
-            <div id="passwordFormButton" class="btn-space">
-                <input type="button" value="Change" class="btn" onclick="showForm('changePassword','passwordFormButton')" />
-            </div>
-            <div id="changePassword" style="display:none">
-                <form asp-action="ProfilePasswordChange" asp-route-userId="@Model.Id"
-                      asp-route-newPassword="@newPassword" asp-route-password="@password">
-                    <div class="form-group">
-                        <input asp-for="@password" type="password" placeholder="Enter password" class="form-control" pattern=".{6,256}" required title="6+ characters required" />
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Login)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Login)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nickname)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Nickname)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Password)
+                </dt>
+                <dd>
+                    <div id="passwordFormButton" class="form-btn">
+                        <input type="button" value="Change" class="btn" onclick="showForm('changePassword','passwordFormButton')" />
                     </div>
-                    <div class="form-group">
-                        <input asp-for="@newPassword" type="password" placeholder="Enter new password" class="form-control" pattern=".{6,256}" required title="6+ characters required" />
+                    <div id="changePassword" style="display:none">
+                        <form asp-action="ProfilePasswordChange" asp-route-userId="@Model.Id"
+                              asp-route-newPassword="@newPassword" asp-route-password="@password">
+                            <div class="form-group form-part">
+                                <input asp-for="@password" type="password" placeholder="Enter password" class="form-control" pattern=".{6,256}" required title="6+ characters required" />
+                            </div>
+                            <div class="form-group form-part">
+                                <input asp-for="@newPassword" type="password" placeholder="Enter new password" class="form-control" pattern=".{6,256}" required title="6+ characters required" />
+                            </div>
+                            <div class="form-group form-btn">
+                                <input type="submit" value="OK" class="btn" />
+                                <input type="button" value="Hide" class="btn" onclick="hideForm('changePassword','passwordFormButton')" />
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group btn-space">
-                        <input type="submit" value="OK" class="btn"/>
-                        <input type="button" value="Hide" class="btn" onclick="hideForm('changePassword','passwordFormButton')"/>
-                    </div>
-                </form>
-            </div>
-            <span class="text-danger">@ViewBag.Error</span>
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AccountCreationTime)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AccountCreationTime)
-        </dd>
-    </dl>
+                    <span class="text-danger">@ViewBag.Error</span>
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.AccountCreationTime)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.AccountCreationTime)
+                </dd>
+            </dl>
+        </div>
+    </div>
 </div>

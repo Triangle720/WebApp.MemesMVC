@@ -102,6 +102,9 @@ html {
     html {
         font-size: 10px;
     }
+    .footer {
+        font-size: 16px;
+    }
 }
 
 @media only screen and (min-width: 768px) {
@@ -114,11 +117,17 @@ html {
     html {
         font-size: 16px;
     }
+    .footer {
+        font-size:18px;
+    }
 }
 
 @media (min-width: 1200px) {
     html {
         font-size: 18px;
+    }
+    .footer {
+        font-size: 22px;
     }
 }
 
@@ -138,13 +147,12 @@ body {
 }
 
 .footer {
-    font-size: 16px;
     position: absolute;
     bottom: 0;
     width: 100%;
     background-color: #202020;
     white-space: nowrap;
-    line-height: 30px;
+    line-height: 35px;
     border-top: 1px solid orange;
 }
 /* Form & list containers
@@ -154,11 +162,11 @@ body {
     margin-top: 10px;
 }
 
-    .form-part label {
+    .form-part label, dl dt, dl dd {
         color: orange;
     }
 
-        .form-part label::selection {
+        .form-part label::selection, dl dt::selection, dl dd::selection {
             color: #FED8B1;
         }
 
@@ -197,90 +205,14 @@ body {
             box-shadow: 0 0 1px 1px orange;
         }
 
-/*.list-container {
-    margin-top: 10%;
+/* custom description list*/
+dl dt{
+
 }
 
-    .list-container dl {
-        margin-top: 5%;
-    }
-
-.list-center dt {
-    width: 100%;
-    text-align: center;
-    font-size: 30px;
+dl dt::selection {
 }
 
-.form-container, .list-container {
-    margin-top: 5%;
-    text-align: center;
-    font-size: 20px;
-}
-
-    .form-container hr, .list-container hr, .upload-container hr {
-        margin-left: 20%;
-        margin-right: 20%;
-    }
-
-    .form-container input, .form-container a, .list-container input, .image-list a {
-        width: 100%;
-        background-color: #EAEAEA;
-        border-color: #3B3B3B;
-        color: #3B3B3B;
-        transition-duration: 0.2s;
-    }
-
-        .form-container input:hover, .form-container a:hover, .list-container input:hover, .image-list a:hover {
-            background-color: white;
-            box-shadow: 0 0 1px 1px #3B3B3B;
-            border-color: black;
-            color: #3B3B3B;
-        }
-
-        .form-container input:focus, .form-container a:focus, .list-container input:focus, .image-list a:focus {
-            box-shadow: none;
-            border-color: #3B3B3B;
-        }
-
-        .form-container input::selection, .form-container a::selection, .list-container input::selection, .image-list a::selection {
-            color: mediumpurple;
-        }
-
-.form-center, .list-center {
-    margin-top: 2%;
-    display: inline-block;
-}
-
-    .form-center label::selection, .list-center dd::selection, .list-center dt::selection {
-        text-shadow: 2px 2px 0 #C0C0C0;
-        color: mediumpurple;
-    }
-
-.form-container h1::selection, .list-container h1::selection, .upload-container label::selection, .upload-container input::selection, .upload-container h1::selection, .image-container h6::selection, .image-container h2::selection, .image-list h1::selection {
-    text-shadow: 2px 2px 0 #C0C0C0;
-    color: mediumpurple;
-}
-
-.btn-space input {
-    margin-top: 0.5px;
-    width: 45%;
-    display: inline;
-}*/
-
-/* image upload form
---------------------------*/
-/*.upload-container {
-    margin-top: 5%;
-    margin-left: 20%;
-    margin-right: 20%;
-    text-align: center;
-    font-size: 20px;
-    display: inline;
-}
-
-    .upload-container label, .upload-container input {
-        width: 50%;
-    }*/
 
 /* image style
 --------------------------*/
@@ -314,7 +246,7 @@ body {
 .rainbow {
     text-align: center;
     font-family: monospace;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.2px;
 }
 
 .rainbow_text_animated {
