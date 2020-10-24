@@ -27,6 +27,10 @@ namespace WebApp.MemesMVC.Controllers
         }
 
         #region VIEW REGION
+        [Route("")]
+        [Route("Home")]
+        [Route("Home/Index")]
+        [Route("Home/Index/page/{pageIndex?}")]
         [AllowAnonymous]
         public IActionResult Index(int pageIndex)
         {

@@ -25,6 +25,7 @@ namespace WebApp.MemesMVC.Controllers
         }
 
         #region VIEW SECTION
+        [Route("Management/Index/{roleType}S/page/{pageIndex}")]
         [AllowAnonymous]
         public IActionResult Index(RoleTypes roleType, int pageIndex)
         {
@@ -40,6 +41,7 @@ namespace WebApp.MemesMVC.Controllers
             return View(results);
         }
 
+        [Route("Management/BanManager/page/{pageIndex}/Role/{roleType}/userId/{userId}")]
         [RoleRequirement("ADMIN, MODERATOR")]
         public IActionResult BanManager(int userId, int pageIndex, RoleTypes roleType)
         {
@@ -54,6 +56,7 @@ namespace WebApp.MemesMVC.Controllers
             return View(user);
         }
 
+        [Route("Management/ChangeRole/page/{pageIndex}/userId/{userId}")]
         [RoleRequirement("ADMIN")]
         public IActionResult ChangeRole(int userId, int pageIndex)
         {

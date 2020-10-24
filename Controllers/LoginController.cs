@@ -11,7 +11,6 @@ using WebApp.MemesMVC.Models;
 using WebApp.MemesMVC.Security;
 using System;
 using Castle.Core.Internal;
-using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace WebApp.MemesMVC.Controllers
 {
@@ -33,6 +32,7 @@ namespace WebApp.MemesMVC.Controllers
             return View();
         }
 
+        [Route("Login")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Bind("Login, Password")] UserModel user)
@@ -57,7 +57,7 @@ namespace WebApp.MemesMVC.Controllers
             HttpContext.Session.SetString("TOKEN", tokenString);
             HttpContext.Session.SetString("ROLE", jwtToken.Claims.First(x => x.Type.ToString().Equals(ClaimTypes.Role)).Value);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home", new { pageIndex = 1 });
         }
 
         public IActionResult Logout()

@@ -25,6 +25,7 @@ namespace WebApp.MemesMVC.Controllers
             return View();
         }
 
+        [Route("Register")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register([Bind("Login, Password, Nickname, Email")] UserModel user)
