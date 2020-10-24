@@ -4,39 +4,40 @@
     ViewData["Title"] = "Role manager";
 }
 
-<h4>Change role</h4>
+<div class="text-center">
+    <h1>Change role</h1>
+    <hr />
+    <div class="row justify-content-center text-center">
+        <div class="col-auto">
+            <form asp-action="ChangeRole">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <text>ID:   @Model.Id</text>
+                    <input type="hidden" asp-for=@Model.Id class="form-control" />
+                </div>
+                <div class="form-group form-part">
+                    <text>Nick: @Model.Nickname</text>
+                </div>
+                <div class="form-group form-part">
+                    <text>Account created in: @Model.AccountCreationTime</text>
+                </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="ChangeRole">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <p>ID:   @Model.Id</p>
-                <input type="hidden" asp-for=@Model.Id class="form-control" />
-            </div>
-            <div class="form-group">
-                <p>Nick: @Model.Nickname</p>
-            </div>
-            <div class="form-group">
-                <p>Account created in: @Model.AccountCreationTime</p>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Role" class="control-label"></label>
-                <select asp-for="Role" class="form-control">
-                    <option value="User"> @RoleTypes.USER </option>
-                    <option value="Moderator"> @RoleTypes.MODERATOR </option>
-                </select>
-                <span asp-validation-for="Role" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Change" class="btn btn-primary" asp-route-pageIndex=@ViewBag.PageIndex/>
-            </div>
-        </form>
+                <div class="form-group form-part">
+                    <label asp-for="Role" class="control-label"></label>
+                    <select asp-for="Role" class="form-control">
+                        <option value="User"> @RoleTypes.USER </option>
+                        <option value="Moderator"> @RoleTypes.MODERATOR </option>
+                    </select>
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+                <div class="form-group form-btn">
+                    <input type="submit" value="Change" class="btn" asp-route-pageIndex=@ViewBag.PageIndex />
+                </div>
+            </form>
+        </div>
+        <hr />
+        <div class="col-auto nav-button form-group form-btn">
+            <a class="btn" asp-route-roleType=@Model.Role asp-route-pageIndex=@ViewBag.PageIndex asp-action="Index">Back</a>
+        </div>
     </div>
 </div>
-
-<div>
-    <a asp-route-roleType=@Model.Role asp-route-pageIndex=@ViewBag.PageIndex asp-action="Index">Back</a>
-</div>
-

@@ -7,14 +7,17 @@
     ViewData["Title"] = "Index";
 }
 
-@if (ViewBag.RoleType == RoleTypes.USER)
-{
-    <h1>Users list</h1>
-}
-else
-{
-    <h1>Moderators list</h1>
-}
+<div class="text-center">
+    @if (ViewBag.RoleType == RoleTypes.USER)
+    {
+        <h1>Users list</h1>
+    }
+    else
+    {
+        <h1>Moderators list</h1>
+    }
+    <hr/>
+</div>
 
 <table class="table">
     <thead>
@@ -29,7 +32,10 @@ else
                 @Html.DisplayNameFor(model => model.AccountCreationTime)
             </th>
             <th>
-                <p>Status</p>
+                <text>Status</text>
+            </th>
+            <th>
+                <text>Action</text>
             </th>
         </tr>
     </thead>
@@ -59,38 +65,36 @@ else
                 else
                 {
                     <td>
-                        <p class="text-success">Not banned</p>
+                        <p class="text-success">Active</p>
                     </td>
                     <td>
                         @if (httpContextAccessor.HttpContext.Session.GetString("ROLE") == Enum.GetName(typeof(RoleTypes), RoleTypes.ADMIN))
                         {
-                            <a asp-action="ChangeRole" asp-route-userId="@item.Id" asp-route-pageIndex=@ViewBag.PageIndex>Change role |</a>
+                            <a asp-action="ChangeRole" asp-route-userId="@item.Id" asp-route-pageIndex=@ViewBag.PageIndex>|Change role|</a>
                         }
-                        <a asp-action="BanManager"  asp-route-userId="@item.Id"
-                           asp-route-roleType=@ViewBag.RoleType asp-route-pageIndex=@ViewBag.PageIndex>Ban</a>
+                        <a asp-action="BanManager" asp-route-userId="@item.Id"
+                           asp-route-roleType=@ViewBag.RoleType asp-route-pageIndex=@ViewBag.PageIndex>|Ban|</a>
                     </td>
                 }
             </tr>
         }
     </tbody>
 </table>
+<hr/>
+<div class="row d-flex justify-content-center">
+    @if ((int)ViewBag.PageIndex > 1)
+    {
+        <div class="col-auto nav-button">
+            <a type="button" class="btn" asp-route-roleType=@ViewBag.RoleType asp-route-pageIndex=@(ViewBag.PageIndex - 1)
+               asp-controller="Management" asp-action="Index"> Prev </a>
+        </div>
+    }
 
-@if ((int)ViewBag.PageIndex > 1)
-{
-    <div class="form-group btn btn-primary">
-        <a class="nav-link text-dark" asp-route-roleType=@ViewBag.RoleType asp-route-pageIndex=@(ViewBag.PageIndex - 1)
-           asp-controller="Management" asp-action="Index"> Prev </a>
-    </div>
-}
-
-@if (Model.Count() == 10)
-{
-    <div class="form-group btn btn-primary">
-        <a class="nav-link text-dark" asp-route-roleType=@ViewBag.RoleType asp-route-pageIndex=@(ViewBag.PageIndex + 1)
-           asp-controller="Management" asp-action="Index"> Next </a>
-    </div>
-}
-
-<div>
-    <a asp-controller="Home" asp-action="Management">Back</a>
+    @if (Model.Count() == 10)
+    {
+        <div class="col-auto nav-button">
+            <a type="button" class="btn" asp-route-roleType=@ViewBag.RoleType asp-route-pageIndex=@(ViewBag.PageIndex + 1)
+               asp-controller="Management" asp-action="Index"> Next </a>
+        </div>
+    }
 </div>

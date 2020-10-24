@@ -41,15 +41,19 @@ hr {
     border-top: 1px solid orange;
 }
 
-a, h1, h2, h6 {
+a, h1, h2, h6, text {
     color: orange;
 }
 
-    a::selection, h1::selection, h2::selection, h6::selection {
+    a::selection, h1::selection, h2::selection, h6::selection, text::selection {
         background-color: none;
         color: #FED8B1;
     }
 
+    a:hover {
+        color: #FED8B1;
+        text-decoration:none;
+    }
 /* nav button  */
 .nav-button {
     margin-bottom: 20px;
@@ -64,8 +68,8 @@ a, h1, h2, h6 {
 
         .nav-button a.btn:hover {
             background-color: #FED8B1;
-            box-shadow: 0 0 1px 1px #3B3B3B;
-            border-color: black;
+            box-shadow: 0 0 1px 1px orange;
+            border-color: orange;
             color: black;
         }
 
@@ -170,19 +174,21 @@ body {
             color: #FED8B1;
         }
 
-    .form-part input {
+    .form-part input, .form-part select {
         color: orange;
         border-color:orange;
         background-color: #323232;
+        overflow:hidden;
     }
 
-        .form-part input:focus {
+        .form-part input:focus, .form-part select:focus, .form-part select option:focus {
             background-color: #202020;
-            color:orange;
-            border-color:orange;
+            color: orange;
+            border-color: orange;
+            box-shadow: 0 0 1px 1px orange;
         }
 
-        .form-part input::selection {
+        .form-part input::selection, .form-part select::selection {
             background-color: none;
             color: #FED8B1;
         }
@@ -200,19 +206,28 @@ body {
 
         .form-btn input:hover {
             background-color: #FED8B1;
-            box-shadow: 0 0 1px 1px #FED8B1;
             border-color: orange;
             box-shadow: 0 0 1px 1px orange;
         }
 
-/* custom description list*/
-dl dt{
+        .form-btn::selection, .nav-button::selection{
+            background-color:black;
+        }
 
+/* table */
+table th, table td {
+    color: orange;
 }
 
-dl dt::selection {
-}
+    table th::selection, table td::selection{
+        color: #FED8B1;
+    }
 
+/* text selection*/
+.text-danger::selection, .text-success::selection {
+    background-color: none;
+    color: #FED8B1;
+}
 
 /* image style
 --------------------------*/

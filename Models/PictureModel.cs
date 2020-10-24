@@ -27,7 +27,7 @@ namespace WebApp.MemesMVC.Models
         [AllowNull]
         public string LocalPath { get; set; }
 
-        [StringLength(100, MinimumLength = 0)]
+        [StringLength(20, MinimumLength = 0)]
         public string Title { get; set; }
 
         public bool IsAccepted { get; set; }

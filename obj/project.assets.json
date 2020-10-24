@@ -10905,7 +10905,8 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\przslo\\.nuget\\packages\\": {}
+    "C:\\Users\\przslo\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -10916,9 +10917,13 @@
       "packagesPath": "C:\\Users\\przslo\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\przslo\\source\\repos\\WebApp\\WebApp.MemesMVC\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
         "C:\\Users\\przslo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"

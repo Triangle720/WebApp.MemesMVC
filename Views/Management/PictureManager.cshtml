@@ -7,68 +7,72 @@
 
 @if (Model != null)
 {
-    <div class="list-container">
+    <div class="text-center">
         <h1>Picture Manager</h1>
         <hr />
-        <dl class="list-center">
-            <dt>
-                @Html.DisplayNameFor(model => model.UserModelId)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.UserModelId)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.UploadTime)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.UploadTime)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.LocalPath)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.LocalPath)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Title)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Title)
-            </dd>
-            <dd>
-                <img class="image-main-style" src="@Model.LocalPath">
-            </dd>
-            <dd>
-                <form asp-controller="Management" id="pictureActionForm">
-                    <div class="form-group">
-                        <input calss="btn" type="submit" asp-action="AcceptPicture" asp-route-pictureId="@Model.Id" value="Accept" />
+        <div class="row justify-content-center">
+            <dl class="col-auto">
+                <dt>
+                    @Html.DisplayNameFor(model => model.UserModelId)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.UserModelId)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.UploadTime)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.UploadTime)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.LocalPath)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.LocalPath)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+                <dd class="image-container">
+                    <img src="@Model.LocalPath">
+                </dd>
+                <dd>
+                    <div class="row justify-content-center d-flex">
+                        <form asp-controller="Management" id="pictureActionForm">
+                            <div class="form-group form-btn col-auto">
+                                <input class="btn" type="submit" asp-action="AcceptPicture" asp-route-pictureId="@Model.Id" value="Accept" />
+                            </div>
+                            <div class="form-group form-btn col-auto">
+                                <input class="btn" type="button" onclick="showForm('banForm','pictureActionForm')" value="Ban author & delete" />
+                            </div>
+                            <div class="form-group form-btn col-auto">
+                                <input class="btn" type="submit" asp-action="DiscardPicture" asp-route-pictureId="@Model.Id" value="Discard" />
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <input calss="btn" type="button" onclick="showForm('banForm','pictureActionForm')" value="Ban author & delete" />
-                    </div>
-                    <div class="form-group">
-                        <input calss="btn" type="submit" asp-action="DiscardPicture" asp-route-pictureId="@Model.Id" value="Discard" />
-                    </div>
-                </form>
-                <form id="banForm" style="display:none;" asp-controller="Management">
-                    <div class="form-group">
-                        <input type="hidden" asp-for="@user.Id" value="@Model.UserModelId" />
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Reason</label>
-                        <input type="text" asp-for="@user.BanReason" class="form-control" pattern=".{0,100}" />
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Ban expire in</label>
-                        <input asp-for="@user.BanExpireIn" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <input class="btn" value="Ban" type="submit" asp-route-pictureId="@Model.Id" asp-route-user="@user" asp-action="BanUserAndDiscardPicture" />
-                        <input class="btn" value="Back" type="button" onclick="showForm('pictureActionForm','banForm')" />
-                    </div>
-                </form>
-            </dd>
-        </dl>
+                    <form id="banForm" style="display:none;" asp-controller="Management">
+                        <div class="form-group">
+                            <input type="hidden" asp-for="@user.Id" value="@Model.UserModelId" />
+                        </div>
+                        <div class="form-group form-part">
+                            <label class="control-label">Reason</label>
+                            <input type="text" asp-for="@user.BanReason" class="form-control" pattern=".{0,100}" autocomplete="off" />
+                        </div>
+                        <div class="form-group form-part">
+                            <label class="control-label">Ban expire in</label>
+                            <input asp-for="@user.BanExpireIn" class="form-control" />
+                        </div>
+                        <div class="form-group form-btn">
+                            <input class="btn" value="Ban" type="submit" asp-route-pictureId="@Model.Id" asp-route-user="@user" asp-action="BanUserAndDiscardPicture" />
+                            <input class="btn" value="Back" type="button" onclick="showForm('pictureActionForm','banForm')" />
+                        </div>
+                    </form>
+                </dd>
+            </dl>
+        </div>
     </div>
 }
 
