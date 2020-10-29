@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using WebApp.MemesMVC.Data;
 using WebApp.MemesMVC.Models;
 using WebApp.MemesMVC.Security;
