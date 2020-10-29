@@ -45,7 +45,7 @@ a, h1, h3, h6, text {
     color: orange;
 }
 
-    a::selection, h1::selection, h2::selection, h6::selection, text::selection {
+    a::selection, h1::selection, h3::selection, h6::selection, text::selection {
         background-color: none;
         color: #FED8B1;
     }
