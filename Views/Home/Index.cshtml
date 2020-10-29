@@ -10,7 +10,14 @@
         <hr />
         @foreach (var item in Model)
         {
-            <h3>@item.PictureTitle</h3>
+            if (item.PictureTitle != null)
+            {
+                <h3>@item.PictureTitle</h3>
+            }
+            else
+            {
+                <h3> - </h3>
+            }
             <h6>Author: @item.UserModelNickname</h6>
             <h6>@item.UploadTime</h6>
             <div class="image-container">

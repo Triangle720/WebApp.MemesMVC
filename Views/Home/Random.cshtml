@@ -7,7 +7,14 @@
     <div class="col-md-10 text-center">
         <h1>Your random meme</h1>
         <hr />
+        @if (Model.PictureTitle != null)
+        {
         <h3>@Model.PictureTitle</h3>
+        }
+        else
+        {
+        <h3> - </h3>
+        }
         <h6>Author: @Model.UserModelNickname </h6>
         <h6>@Model.UploadTime</h6>
         <div class="image-container">
