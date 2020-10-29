@@ -6,7 +6,6 @@ using WebApp.MemesMVC.Data;
 using WebApp.MemesMVC.Models;
 using WebApp.MemesMVC.Security;
 using System.Net.Http;
-using Microsoft.AspNetCore.Authorization;
 using BlobStorageDemo;
 using System;
 
@@ -26,7 +25,6 @@ namespace WebApp.MemesMVC.Controllers
 
         #region VIEW SECTION
         [Route("Management/Index/{roleType}S/page/{pageIndex}")]
-        [AllowAnonymous]
         public IActionResult Index(RoleTypes roleType, int pageIndex)
         {
             if (pageIndex <= 0) pageIndex = 1;
@@ -42,7 +40,6 @@ namespace WebApp.MemesMVC.Controllers
         }
 
         [Route("Management/BanManager/page/{pageIndex}/Role/{roleType}/userId/{userId}")]
-        [RoleRequirement("ADMIN, MODERATOR")]
         public IActionResult BanManager(int userId, int pageIndex, RoleTypes roleType)
         {
             var user = _context.Users.Where(u => u.Id == userId).FirstOrDefault();
@@ -56,7 +53,6 @@ namespace WebApp.MemesMVC.Controllers
             return View(user);
         }
 
-        [Route("Management/ChangeRole/page/{pageIndex}/userId/{userId}")]
         [RoleRequirement("ADMIN")]
         public IActionResult ChangeRole(int userId, int pageIndex)
         {
@@ -66,7 +62,6 @@ namespace WebApp.MemesMVC.Controllers
             return View(user);
         }
 
-        [RoleRequirement("ADMIN,MODERATOR")]
         public IActionResult PictureManager(string errorMessage = "")
         {
             if (errorMessage != "") ViewBag.Error = errorMessage;
@@ -76,7 +71,6 @@ namespace WebApp.MemesMVC.Controllers
         #endregion
 
         #region POST SECTION
-        [RoleRequirement("ADMIN,MODERATOR")]
         [HttpPost]
         public async Task<IActionResult> Ban([Bind("Id, BanExpireIn, BanReason")] UserModel user, int pageIndex)
         {
@@ -87,7 +81,6 @@ namespace WebApp.MemesMVC.Controllers
         }
 
         [HttpPost]
-        [RoleRequirement("ADMIN,MODERATOR")]
         public async Task<IActionResult> Unban([Bind("Id")] UserModel user, int pageIndex)
         {
             var tempUser = await _context.Users.Where(u => u.Id == user.Id).FirstOrDefaultAsync();
@@ -97,7 +90,6 @@ namespace WebApp.MemesMVC.Controllers
         }
 
         [HttpPost]
-        [RoleRequirement("ADMIN,MODERATOR")]
         public async Task<IActionResult> ChangeRole([Bind("Id, Role")] UserModel user, int pageIndex)
         {
             var tempUser = await _context.Users.Where(u => u.Id == user.Id).FirstOrDefaultAsync();
@@ -111,7 +103,6 @@ namespace WebApp.MemesMVC.Controllers
         }
 
         [HttpPost]
-        [RoleRequirement("ADMIN,MODERATOR")]
         public async Task<IActionResult> AcceptPicture(int pictureId)
         {
             var tempPicture = _context.Pictures.Where(p => p.Id == pictureId).FirstOrDefault();
@@ -139,7 +130,6 @@ namespace WebApp.MemesMVC.Controllers
         }
 
         [HttpPost]
-        [RoleRequirement("ADMIN,MODERATOR")]
         public async Task<IActionResult> DiscardPicture(int pictureId)
         {
             var tempPicture = await _context.Pictures.Where(p => p.Id == pictureId).FirstOrDefaultAsync();
@@ -148,7 +138,6 @@ namespace WebApp.MemesMVC.Controllers
         }
 
         [HttpPost]
-        [RoleRequirement("ADMIN,MODERATOR")]
         public async Task<IActionResult> BanUserAndDiscardPicture(int pictureId, [Bind("Id, BanReason, BanExpireIn")] UserModel user)
         {
             var tempPicture = await _context.Pictures.Where(p => p.Id == pictureId).FirstOrDefaultAsync();

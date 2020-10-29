@@ -41,7 +41,7 @@ hr {
     border-top: 1px solid orange;
 }
 
-a, h1, h2, h6, text {
+a, h1, h3, h6, text {
     color: orange;
 }
 

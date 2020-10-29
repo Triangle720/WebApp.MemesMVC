@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -42,14 +43,33 @@ namespace WebApp.MemesMVC.Controllers
                                             .Skip((pageIndex - 1) * 10)
                                             .Take(10)
                                             .ToList();
-            return View(pictures);
+
+            List<DisplayedPictureModel> pictureList = new List<DisplayedPictureModel>();
+
+            foreach (PictureModel pic in pictures)
+            {
+                pictureList.Add(new DisplayedPictureModel(
+                    pic.Title,
+                    pic.UrlAddress,
+                    _context.Users.Where(u => u.Id == pic.UserModelId).SingleOrDefault().Nickname,
+                    pic.UploadTime));
+            }
+
+            return View(pictureList);
         }
 
         [AllowAnonymous]
         public IActionResult Random()
         {
             var random = _context.Pictures.OrderBy(o => Guid.NewGuid()).Where(p => p.IsAccepted).FirstOrDefault();
-            return View(random);
+
+            var picture = new DisplayedPictureModel(
+                    random.Title,
+                    random.UrlAddress,
+                    _context.Users.Where(u => u.Id == random.UserModelId).SingleOrDefault().Nickname,
+                    random.UploadTime);
+
+            return View(picture);
         }
 
         [RoleRequirement("ADMIN,MODERATOR")]

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApp.MemesMVC.Models.PictureModel>
+﻿@model IEnumerable<WebApp.MemesMVC.Models.DisplayedPictureModel>
 
 @{
     ViewData["Title"] = "Home Page"; 
@@ -10,10 +10,11 @@
         <hr />
         @foreach (var item in Model)
         {
-            <h2>@item.Title</h2>
-            <h6>Author: </h6>
+            <h3>@item.PictureTitle</h3>
+            <h6>Author: @item.UserModelNickname</h6>
+            <h6>@item.UploadTime</h6>
             <div class="image-container">
-                <img src="@item.UrlAddress" />
+                <img src="@item.Url" />
             </div>
             <hr />
         }

@@ -21,7 +21,6 @@
                 <div class="form-group form-part">
                     <text>Account created in: @Model.AccountCreationTime</text>
                 </div>
-
                 <div class="form-group form-part">
                     <label asp-for="Role" class="control-label"></label>
                     <select asp-for="Role" class="form-control">
@@ -31,7 +30,7 @@
                     <span asp-validation-for="Role" class="text-danger"></span>
                 </div>
                 <div class="form-group form-btn">
-                    <input type="submit" value="Change" class="btn" asp-route-pageIndex=@ViewBag.PageIndex />
+                    <input type="submit" value="Change" class="btn" asp-route-pageIndex=@ViewBag.PageIndex/>
                 </div>
             </form>
         </div>
