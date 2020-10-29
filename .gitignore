@@ -1,0 +1,4 @@
+﻿*.json
+Properties/
+bin/
+obj/
