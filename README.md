@@ -1,8 +1,8 @@
 ﻿# Memes World
-Kod aplikacji webowej w architekturze MVC (Model-View-Controller) tworzony w ramach portfolio.
+Kod aplikacji webowej w architekturze MVC tworzony w ramach portfolio.
 Uruchomiona w serwisie [Azure](https://azure.com)
 Podłączona pod [API imgur'a](https://apidocs.imgur.com).
-Link: [Memes World](https://webappmemesmvc.azurewebsites.net)
+Link: [Memes World](https://webappmemesmvc.azurewebsites.net) (OFF)
 
 # O aplikacji
 Aplikacja pozwala na rejestrację (**bez weryfikacji poprzez email**) użytkownika w serwisie polegającym na przesyłaniu 'śmiesznych obrazków' czy też słodkich kotków, oraz przeglądaniu  ich.
